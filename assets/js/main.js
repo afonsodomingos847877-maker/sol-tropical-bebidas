@@ -1,5 +1,5 @@
 /**
- * Sol Tropical Bebidas — Scripts Oficiais
+ * Sol Tropical Bebidas — Scripts Oficiais & Interatividade
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -9,59 +9,59 @@ document.addEventListener('DOMContentLoaded', () => {
     yearEl.textContent = new Date().getFullYear();
   }
 
-  // 2. Dados dos Sabores Sorriso
+  // 2. Base de Dados dos 9 Sabores Sorriso
   const flavorsData = {
     'Tamarindo': {
       title: 'Sorriso Tamarindo',
-      desc: 'Sabor exótico, encorpado e agridoce. Um dos favoritos tradicionais de Moçambique.',
+      desc: 'Sabor exótico, encorpado e agridoce. Um dos favoritos mais tradicionais e autênticos de Moçambique.',
       tag: 'Exótico & Tradicional',
       color: '#b25e29'
     },
     'Maçã Verde': {
       title: 'Sorriso Maçã Verde',
-      desc: 'Frescura intensa com toque crocante e equilibrado de acidez para dias quentes.',
+      desc: 'Frescura intensa com toque crocante e equilibrado de acidez, perfeito para matar a sede em dias quentes.',
       tag: 'Crocante & Refrescante',
       color: '#55b338'
     },
     'Ananás': {
       title: 'Sorriso Ananás',
-      desc: 'O autêntico sabor tropical da fruta madura ao sol. Doçura e aroma irresistíveis.',
+      desc: 'O autêntico sabor tropical da fruta madura ao sol moçambicano. Doçura sumarenta e aroma irresistível.',
       tag: 'Tropical & Doce',
       color: '#e5a912'
     },
     'Limão': {
       title: 'Sorriso Limão',
-      desc: 'Explosão cítrica revigorante, perfeito para matar a sede e recarregar energias.',
+      desc: 'Explosão cítrica revigorante, equilibrada com gás fino para recarregar energias a qualquer hora.',
       tag: 'Cítrico & Revigorante',
       color: '#84cc16'
     },
     'Maracujá': {
       title: 'Sorriso Maracujá',
-      desc: 'Intenso, aromático e aveludado. A essência tropical numa bebida refrescante.',
+      desc: 'Intenso, aromático e aveludado. A essência dos frutos tropicais numa bebida irresistível.',
       tag: 'Aromático & Intenso',
       color: '#f59e0b'
     },
     'Uva': {
       title: 'Sorriso Uva',
-      desc: 'Sabor suave e encorpado de uvas selecionadas, com doçura equilibrada.',
+      desc: 'Sabor suave e encorpado de uvas selecionadas, com final doce e reconfortante.',
       tag: 'Doce & Encorpado',
       color: '#8b5cf6'
     },
     'Laranja': {
       title: 'Sorriso Laranja',
-      desc: 'A clássica energia cítrica e vibrante que agrada a toda a família.',
+      desc: 'A clássica energia cítrica, alegre e vibrante que agrada a toda a família à mesa.',
       tag: 'Clássico & Vibrante',
       color: '#f97316'
     },
     'Maçã & Canela': {
       title: 'Sorriso Maçã & Canela',
-      desc: 'Uma combinação rica e exclusiva de notas frutadas com especiarias perfumadas.',
+      desc: 'Combinação rica e exclusiva da doçura da maçã com o aroma quente e especiado da canela.',
       tag: 'Exclusivo & Aromático',
       color: '#dc2626'
     },
     'Morango': {
       title: 'Sorriso Morango',
-      desc: 'Vibrante, doce e frutado. A alegria das crianças e de todos que apreciam momentos doces.',
+      desc: 'Vibrante, doce e frutado. A escolha perfeita para momentos alegres e festivos.',
       tag: 'Frutado & Irresistível',
       color: '#ef4444'
     }
@@ -81,38 +81,47 @@ document.addEventListener('DOMContentLoaded', () => {
         tag.classList.add('active');
 
         previewBox.innerHTML = `
-          <div class="flavor-detail" style="border-left: 4px solid ${data.color}">
-            <h4>${data.title} <span class="flavor-mini-tag" style="background:${data.color}20; color:${data.color}; border:1px solid ${data.color}40">${data.tag}</span></h4>
+          <div class="flavor-detail" style="border-left: 4px solid ${data.color};">
+            <h4>
+              ${data.title}
+              <span class="flavor-mini-tag" style="background:${data.color}20; color:${data.color}; border:1px solid ${data.color}45;">
+                ${data.tag}
+              </span>
+            </h4>
             <p>${data.desc}</p>
           </div>
         `;
-        previewBox.classList.add('show');
       });
     });
   }
 
-  // 3. Modal / Lightbox para o Banner 2000px
+  // 3. Modal / Lightbox para o Banner 2000px em Alta Definição
+  const bannerCard = document.querySelector('.banner-card');
   const bannerImg = document.querySelector('.banner-media img');
   const modal = document.getElementById('banner-modal');
   const modalImg = document.getElementById('modal-img');
   const modalClose = document.getElementById('modal-close');
 
-  if (bannerImg && modal && modalImg && modalClose) {
+  if (bannerCard && modal && modalImg && modalClose) {
     const openModal = () => {
-      modalImg.src = bannerImg.src;
+      modalImg.src = bannerImg ? bannerImg.src : 'assets/images/sorriso-banner.png';
       modal.classList.add('active');
+      modal.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
     };
 
     const closeModal = () => {
       modal.classList.remove('active');
+      modal.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     };
 
-    bannerImg.style.cursor = 'zoom-in';
-    bannerImg.title = 'Clique para ver o banner em alta resolução';
-    bannerImg.addEventListener('click', openModal);
-    modalClose.addEventListener('click', closeModal);
+    bannerCard.addEventListener('click', openModal);
+    modalClose.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeModal();
+    });
+
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
     });
@@ -124,36 +133,45 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. Seletor Rápido de Assunto para WhatsApp
+  // 4. Seletor Rápido de Cotação para WhatsApp (B2B / Revenda)
   const quoteBtns = document.querySelectorAll('.quick-quote-btn');
   const mainWhatsappBtn = document.getElementById('main-whatsapp-btn');
+  const whatsappBtnText = document.getElementById('whatsapp-btn-text');
 
   if (quoteBtns.length && mainWhatsappBtn) {
     quoteBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
+      btn.addEventListener('click', () => {
         quoteBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
         const messageType = btn.getAttribute('data-type');
-        let text = 'Olá! Gostaria de mais informações sobre os produtos da Sol Tropical Bebidas.';
+        let text = 'Olá! Gostaria de informações sobre os produtos da Sol Tropical Bebidas.';
+        let label = 'WhatsApp (+258 865 588 888)';
 
         if (messageType === 'revenda') {
           text = 'Olá! Gostaria de cotação e condições para ser revendedor/distribuidor das bebidas Sol Tropical (Sorriso, First Cola, Água Serena).';
+          label = 'WhatsApp: Cotação de Revenda';
         } else if (messageType === 'sorriso') {
-          text = 'Olá! Gostaria de encomendar a linha de Refrigerantes Sorriso (sabores e formatos).';
+          text = 'Olá! Gostaria de encomendar a linha de Refrigerantes Sorriso (sabores e formatos para revenda).';
+          label = 'WhatsApp: Encomendar Sorriso';
         } else if (messageType === 'first-cola') {
           text = 'Olá! Tenho interesse em encomendar o lote de First Cola 350ml.';
+          label = 'WhatsApp: Encomendar First Cola';
         } else if (messageType === 'agua-serena') {
           text = 'Olá! Gostaria de cotação para fardos de Água Serena 500ml.';
+          label = 'WhatsApp: Cotação Água Serena';
         }
 
         const encoded = encodeURIComponent(text);
         mainWhatsappBtn.href = `https://wa.me/258865588888?text=${encoded}`;
         
-        // feedback visual
+        if (whatsappBtnText) {
+          whatsappBtnText.textContent = label;
+        }
+
+        // feedback visual suave
         mainWhatsappBtn.classList.add('btn-highlight');
-        setTimeout(() => mainWhatsappBtn.classList.remove('btn-highlight'), 600);
+        setTimeout(() => mainWhatsappBtn.classList.remove('btn-highlight'), 500);
       });
     });
   }
@@ -162,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const backToTop = document.getElementById('back-to-top');
   if (backToTop) {
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 400) {
+      if (window.scrollY > 350) {
         backToTop.classList.add('visible');
       } else {
         backToTop.classList.remove('visible');
@@ -174,4 +192,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-
