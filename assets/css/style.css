@@ -100,7 +100,7 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   position: relative;
   z-index: 1;
 }
@@ -202,122 +202,110 @@ body {
 }
 
 /* ==========================================================================
-   Grade de Produtos (Cards Visuais & Diretos)
+   Linha de Produtos (Compacta & Resumida para Poupar Espaço)
    ========================================================================== */
-.products-grid {
+.products-compact {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
 }
 
-.product-item {
+.compact-card {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  padding: 24px;
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  gap: 6px;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.product-item:hover {
-  transform: translateY(-4px);
+.compact-card:hover {
+  transform: translateY(-2px);
   border-color: #cbd5e1;
   box-shadow: var(--shadow-md);
 }
 
-.product-badge {
-  display: inline-block;
-  align-self: flex-start;
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  padding: 4px 10px;
-  border-radius: 20px;
-  margin-bottom: 12px;
+.compact-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.badge-sorriso {
-  background: #fff7ed;
-  color: #ea580c;
-  border: 1px solid #fed7aa;
+.compact-title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.badge-cola {
-  background: #fef2f2;
-  color: #dc2626;
-  border: 1px solid #fecaca;
+.compact-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
-.badge-serena {
-  background: #f0f9ff;
-  color: #0284c7;
-  border: 1px solid #bae6fd;
-}
+.dot-orange { background: var(--primary-orange); box-shadow: 0 0 6px rgba(242, 101, 34, 0.4); }
+.dot-red    { background: var(--primary-red); box-shadow: 0 0 6px rgba(227, 25, 11, 0.4); }
+.dot-blue   { background: var(--brand-blue); box-shadow: 0 0 6px rgba(14, 65, 116, 0.4); }
 
-.product-item h3 {
-  font-size: 1.45rem;
+.compact-card h3 {
+  font-size: 1.12rem;
   font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 4px;
+  margin: 0;
 }
 
-.product-spec {
-  font-size: 0.88rem;
+.compact-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.badge-sorriso { background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; }
+.badge-cola    { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
+.badge-serena  { background: #f0f9ff; color: #0284c7; border: 1px solid #bae6fd; }
+
+.compact-desc {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin: 0;
+}
+
+.compact-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.compact-sub {
+  font-size: 0.8rem;
   color: var(--text-muted);
   font-weight: 600;
-  margin-bottom: 16px;
 }
 
-/* ==========================================================================
-   Chips Coloridos de Sabores (Sorriso)
-   ========================================================================== */
-.flavor-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.chip {
-  font-size: 0.76rem;
-  font-weight: 700;
-  padding: 5px 10px;
-  border-radius: 8px;
-  transition: transform 0.15s ease;
-}
-
-.chip:hover {
-  transform: scale(1.05);
-}
-
-.chip-tamarindo  { background: #fbf3ec; color: #8c4b1d; border: 1px solid #edd5c2; }
-.chip-maca-verde { background: #f0fdf4; color: #16a34a; border: 1px solid #bbf7d0; }
-.chip-ananas     { background: #fefce8; color: #ca8a04; border: 1px solid #fef08a; }
-.chip-limao      { background: #f7fee7; color: #65a30d; border: 1px solid #d9f99d; }
-.chip-maracuja   { background: #fffbeb; color: #d97706; border: 1px solid #fde68a; }
-.chip-uva        { background: #faf5ff; color: #9333ea; border: 1px solid #e9d5ff; }
-.chip-laranja    { background: #fff7ed; color: #ea580c; border: 1px solid #fed7aa; }
-.chip-canela     { background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; }
-.chip-morango    { background: #fff1f2; color: #e11d48; border: 1px solid #fecdd3; }
-
-.btn-product {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.compact-action {
   color: var(--primary-orange);
   text-decoration: none;
   font-weight: 700;
-  font-size: 0.92rem;
-  margin-top: auto;
-  padding-top: 10px;
+  font-size: 0.82rem;
   transition: transform 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
 }
 
-.btn-product:hover {
+.compact-action:hover {
   color: var(--primary-red);
-  transform: translateX(4px);
+  transform: translateX(3px);
 }
 
 /* ==========================================================================
@@ -327,16 +315,16 @@ body {
   background: var(--bg-card);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
-  padding: 28px 20px;
+  padding: 20px 16px;
   text-align: center;
   box-shadow: var(--shadow-sm);
 }
 
 .contact-card h2 {
-  font-size: 1.35rem;
+  font-size: 1.15rem;
   font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 
 .contact-btns {
