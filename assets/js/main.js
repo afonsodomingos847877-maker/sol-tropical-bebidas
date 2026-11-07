@@ -133,50 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. Seletor Rápido de Cotação para WhatsApp (B2B / Revenda)
-  const quoteBtns = document.querySelectorAll('.quick-quote-btn');
-  const mainWhatsappBtn = document.getElementById('main-whatsapp-btn');
-  const whatsappBtnText = document.getElementById('whatsapp-btn-text');
-
-  if (quoteBtns.length && mainWhatsappBtn) {
-    quoteBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        quoteBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-
-        const messageType = btn.getAttribute('data-type');
-        let text = 'Olá! Gostaria de informações sobre os produtos da Sol Tropical Bebidas.';
-        let label = 'WhatsApp (+258 865 588 888)';
-
-        if (messageType === 'revenda') {
-          text = 'Olá! Gostaria de cotação e condições para ser revendedor/distribuidor das bebidas Sol Tropical (Sorriso, First Cola, Água Serena).';
-          label = 'WhatsApp: Cotação de Revenda';
-        } else if (messageType === 'sorriso') {
-          text = 'Olá! Gostaria de encomendar a linha de Refrigerantes Sorriso (sabores e formatos para revenda).';
-          label = 'WhatsApp: Encomendar Sorriso';
-        } else if (messageType === 'first-cola') {
-          text = 'Olá! Tenho interesse em encomendar o lote de First Cola 350ml.';
-          label = 'WhatsApp: Encomendar First Cola';
-        } else if (messageType === 'agua-serena') {
-          text = 'Olá! Gostaria de cotação para fardos de Água Serena 500ml.';
-          label = 'WhatsApp: Cotação Água Serena';
-        }
-
-        const encoded = encodeURIComponent(text);
-        mainWhatsappBtn.href = `https://wa.me/258865588888?text=${encoded}`;
-        
-        if (whatsappBtnText) {
-          whatsappBtnText.textContent = label;
-        }
-
-        // feedback visual suave
-        mainWhatsappBtn.classList.add('btn-highlight');
-        setTimeout(() => mainWhatsappBtn.classList.remove('btn-highlight'), 500);
-      });
-    });
-  }
-
-  // 5. Botão Voltar ao Topo
+  // 4. Botão Voltar ao Topo
   const backToTop = document.getElementById('back-to-top');
   if (backToTop) {
     window.addEventListener('scroll', () => {
