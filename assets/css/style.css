@@ -149,6 +149,59 @@ body {
   color: var(--primary-orange);
 }
 
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #b45309;
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 6px #f59e0b;
+  animation: pulseDot 1.8s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.85); }
+}
+
+.notice-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #fffbeb;
+  border: 1px solid #fef3c7;
+  border-radius: var(--radius-md);
+  color: #92400e;
+  font-size: 0.82rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.notice-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d97706;
+  flex-shrink: 0;
+  animation: pulseDot 1.8s infinite;
+}
+
 .header-btn {
   display: inline-flex;
   align-items: center;
@@ -474,6 +527,15 @@ footer {
 
   .top-header {
     justify-content: center;
+  }
+
+  .status-badge {
+    display: none;
+  }
+
+  .notice-bar {
+    font-size: 0.76rem;
+    padding: 6px 12px;
   }
 
   .contact-btns {
