@@ -24,7 +24,12 @@ app.get('/', (req, res) => {
 
 // Servir Painel Administrativo / Dashboard
 app.use('/admin', express.static(path.join(__dirname, 'admin')));
-app.get('/admin', (req, res) => {
+
+// Fallbacks de compatibilidade para carregamento de CSS e JS
+app.use('/css', express.static(path.join(__dirname, 'admin', 'css')));
+app.use('/js', express.static(path.join(__dirname, 'admin', 'js')));
+
+app.get(['/admin', '/admin/*'], (req, res) => {
   res.sendFile(path.join(__dirname, 'admin', 'index.html'));
 });
 
