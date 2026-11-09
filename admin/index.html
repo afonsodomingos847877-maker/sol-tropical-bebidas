@@ -12,11 +12,14 @@
   <!-- Sidebar Lateral -->
   <aside class="admin-sidebar">
     <div class="sidebar-header">
-      <span class="sidebar-logo">☀️</span>
-      <div class="sidebar-title">
-        <h1>Sol Tropical <span>Bebidas</span></h1>
-        <p>Painel Comercial</p>
+      <div style="display:flex; align-items:center; gap:12px;">
+        <span class="sidebar-logo">☀️</span>
+        <div class="sidebar-title">
+          <h1>Sol Tropical <span>Bebidas</span></h1>
+          <p>Painel Comercial</p>
+        </div>
       </div>
+      <button type="button" class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Fechar Menu">&times;</button>
     </div>
 
     <nav class="sidebar-nav">
@@ -70,6 +73,9 @@
       </a>
     </div>
   </aside>
+
+  <!-- Backdrop para Fechar Menu no Mobile -->
+  <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
 
   <!-- Área Principal -->
   <main class="admin-main">

@@ -174,6 +174,18 @@ function initNavigation() {
   const navButtons = document.querySelectorAll('.sidebar-nav .nav-item');
   const mobileBtn = document.getElementById('mobileMenuBtn');
   const sidebar = document.querySelector('.admin-sidebar');
+  const backdrop = document.getElementById('sidebarBackdrop');
+  const closeBtn = document.getElementById('sidebarCloseBtn');
+
+  const closeSidebar = () => {
+    if (sidebar) sidebar.classList.remove('open');
+    if (backdrop) backdrop.classList.remove('active');
+  };
+
+  const openSidebar = () => {
+    if (sidebar) sidebar.classList.add('open');
+    if (backdrop) backdrop.classList.add('active');
+  };
 
   navButtons.forEach(btn => {
     btn.addEventListener('click', (e) => {
@@ -185,19 +197,22 @@ function initNavigation() {
       btn.classList.add('active');
 
       switchView(view);
-
-      // Fecha sidebar móvel se aberta
-      if (sidebar && sidebar.classList.contains('open')) {
-        sidebar.classList.remove('open');
-      }
+      closeSidebar();
     });
   });
 
-  if (mobileBtn && sidebar) {
+  if (mobileBtn) {
     mobileBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
+      if (sidebar && sidebar.classList.contains('open')) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
     });
   }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeSidebar);
+  if (backdrop) backdrop.addEventListener('click', closeSidebar);
 }
 
 function switchView(viewName) {
