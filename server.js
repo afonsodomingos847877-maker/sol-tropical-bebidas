@@ -3,7 +3,10 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const connectDB = require('./db');
+const Product = require('./models/Product');
+const Customer = require('./models/Customer');
 const Inquiry = require('./models/Inquiry');
+const { produtosIniciais, clientesIniciais } = require('./seed');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,11 +16,25 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Servir arquivos estáticos (Frontend)
+// Servir ficheiros estáticos do Website Público
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
+
+// Servir Painel Administrativo / Dashboard
+app.use('/admin', express.static(path.join(__dirname, 'admin')));
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin', 'index.html'));
+});
+
+// Rotas da API Comercial do Dashboard
+app.use('/api/products', require('./routes/products'));
+app.use('/api/stock', require('./routes/stock'));
+app.use('/api/orders', require('./routes/orders'));
+app.use('/api/sales', require('./routes/sales'));
+app.use('/api/customers', require('./routes/customers'));
+app.use('/api/dashboard/stats', require('./routes/stats'));
 
 // Endpoint de Saúde / Conexão MongoDB
 app.get('/api/status', (req, res) => {
@@ -27,6 +44,7 @@ app.get('/api/status', (req, res) => {
   res.json({
     app: 'Sol Tropical Bebidas',
     status: 'online',
+    dashboard: '/admin',
     database: {
       connected: isConnected,
       name: mongoose.connection.name || null,
@@ -36,7 +54,7 @@ app.get('/api/status', (req, res) => {
   });
 });
 
-// Endpoint: Registar novo pedido / contacto
+// Endpoint legado: Registar novo pedido / contacto
 app.post('/api/inquiries', async (req, res) => {
   try {
     const { nome, telefone, produtoInteresse, mensagem } = req.body;
@@ -62,7 +80,7 @@ app.post('/api/inquiries', async (req, res) => {
   }
 });
 
-// Endpoint: Listar pedidos
+// Endpoint legado: Listar pedidos
 app.get('/api/inquiries', async (req, res) => {
   try {
     const inquiries = await Inquiry.find().sort({ createdAt: -1 }).limit(50);
@@ -79,14 +97,34 @@ app.get('/api/inquiries', async (req, res) => {
   }
 });
 
+// Auto-seed: Carregar catálogo inicial se a base de dados estiver vazia
+const autoSeedIfEmpty = async () => {
+  try {
+    const count = await Product.countDocuments();
+    if (count === 0) {
+      console.log('[AutoSeed] Base de dados vazia. A carregar os 3 produtos e 9 sabores de Sorriso...');
+      for (const p of produtosIniciais) {
+        await Product.create(p);
+      }
+      for (const c of clientesIniciais) {
+        await Customer.create(c);
+      }
+      console.log('[AutoSeed] Catálogo e dados iniciais criados com sucesso!');
+    }
+  } catch (err) {
+    console.error('[AutoSeed] Aviso ao verificar dados iniciais:', err.message);
+  }
+};
+
 // Iniciar servidor após conectar ao MongoDB
 const startServer = async () => {
   await connectDB();
+  await autoSeedIfEmpty();
   app.listen(PORT, () => {
     console.log(`[Servidor] Sol Tropical Bebidas rodando na porta ${PORT}`);
-    console.log(`[Servidor] Acesse: http://localhost:${PORT}`);
+    console.log(`[Servidor] Website Público: http://localhost:${PORT}`);
+    console.log(`[Servidor] Painel Comercial (Dashboard): http://localhost:${PORT}/admin`);
   });
 };
 
 startServer();
-
