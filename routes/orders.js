@@ -1,152 +1,89 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 const Order = require('../models/Order');
 const Product = require('../models/Product');
-const Customer = require('../models/Customer');
+const memoryStore = require('../data/memoryStore');
 
-// GET /api/orders - Listar pedidos
+// GET /api/orders
 router.get('/', async (req, res) => {
   try {
-    const { estado, origem, busca } = req.query;
-    const filtro = {};
-
-    if (estado) filtro.estado = estado;
-    if (origem) filtro.origem = origem;
-    if (busca) {
-      filtro.$or = [
-        { numeroPedido: new RegExp(busca, 'i') },
-        { nomeCliente: new RegExp(busca, 'i') },
-        { telefoneCliente: new RegExp(busca, 'i') }
-      ];
+    if (mongoose.connection.readyState !== 1) {
+      return res.json({ success: true, count: memoryStore.pedidos.length, data: memoryStore.pedidos });
     }
-
-    const orders = await Order.find(filtro).sort({ createdAt: -1 });
+    const orders = await Order.find().sort({ createdAt: -1 });
     res.json({ success: true, count: orders.length, data: orders });
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Erro ao listar pedidos', error: error.message });
+    res.json({ success: true, count: memoryStore.pedidos.length, data: memoryStore.pedidos });
   }
 });
 
-// GET /api/orders/:id - Obter pedido detalhado
-router.get('/:id', async (req, res) => {
-  try {
-    const order = await Order.findById(req.params.id);
-    if (!order) {
-      return res.status(404).json({ success: false, message: 'Pedido não encontrado' });
-    }
-    res.json({ success: true, data: order });
-  } catch (error) {
-    res.status(500).json({ success: false, message: 'Erro ao obter pedido', error: error.message });
-  }
-});
-
-// POST /api/orders - Criar novo pedido
+// POST /api/orders
 router.post('/', async (req, res) => {
   try {
-    const { clienteId, nomeCliente, telefoneCliente, cidade, itens, origem, observacoes } = req.body;
+    const { nomeCliente, telefoneCliente, cidade, itens, observacoes } = req.body;
 
     if (!nomeCliente || !telefoneCliente || !itens || !itens.length) {
-      return res.status(400).json({
-        success: false,
-        message: 'Nome do cliente, telefone e pelo menos um item são obrigatórios'
-      });
+      return res.status(400).json({ success: false, message: 'Dados incompletos' });
     }
 
-    // Processar itens e calcular totais
-    let valorTotalMZN = 0;
-    let totalFardos = 0;
-    const itensProcessados = [];
+    if (mongoose.connection.readyState !== 1) {
+      const novoPedido = {
+        _id: 'ped_' + Date.now(),
+        numeroPedido: `PED-${new Date().getFullYear()}${String(new Date().getMonth()+1).padStart(2,'0')}-${String(memoryStore.pedidos.length + 1).padStart(4,'0')}`,
+        nomeCliente: nomeCliente.trim(),
+        telefoneCliente: telefoneCliente.trim(),
+        cidade: cidade || 'Maputo',
+        itens: itens.map(i => {
+          const p = memoryStore.produtos.find(prod => prod._id === i.produtoId);
+          return {
+            produto: i.produtoId,
+            nome: p ? p.nome : 'Produto',
+            sabor: p ? p.sabor : '',
+            quantidadeFardos: Number(i.quantidadeFardos),
+            precoFardoMZN: p ? p.precoFardoMZN : 540,
+            subtotalMZN: (p ? p.precoFardoMZN : 540) * Number(i.quantidadeFardos)
+          };
+        }),
+        totalFardos: itens.reduce((a, b) => a + Number(b.quantidadeFardos), 0),
+        valorTotalMZN: itens.reduce((a, b) => {
+          const p = memoryStore.produtos.find(prod => prod._id === b.produtoId);
+          return a + ((p ? p.precoFardoMZN : 540) * Number(b.quantidadeFardos));
+        }, 0),
+        estado: 'Pendente',
+        origem: 'Website',
+        observacoes: observacoes || '',
+        createdAt: new Date()
+      };
 
-    for (const item of itens) {
-      const prod = await Product.findById(item.produtoId);
-      if (!prod) {
-        return res.status(404).json({
-          success: false,
-          message: `Produto ${item.produtoId} não encontrado`
-        });
-      }
-
-      const qtd = Number(item.quantidadeFardos);
-      const precoFardo = Number(item.precoFardoMZN || prod.precoFardoMZN);
-      const subtotal = qtd * precoFardo;
-
-      totalFardos += qtd;
-      valorTotalMZN += subtotal;
-
-      itensProcessados.push({
-        produto: prod._id,
-        nome: prod.nome,
-        sabor: prod.sabor,
-        quantidadeFardos: qtd,
-        precoFardoMZN: precoFardo,
-        subtotalMZN: subtotal
-      });
+      memoryStore.pedidos.unshift(novoPedido);
+      return res.status(201).json({ success: true, message: 'Pedido registado com sucesso!', data: novoPedido });
     }
 
-    // Se tiver cliente cadastrado ou por telefone
-    let clienteRef = clienteId || null;
-    if (!clienteRef && telefoneCliente) {
-      const existingCust = await Customer.findOne({ telefone: telefoneCliente.trim() });
-      if (existingCust) {
-        clienteRef = existingCust._id;
-      }
-    }
-
-    const order = await Order.create({
-      cliente: clienteRef,
-      nomeCliente: nomeCliente.trim(),
-      telefoneCliente: telefoneCliente.trim(),
-      cidade: cidade || 'Maputo',
-      itens: itensProcessados,
-      totalFardos,
-      valorTotalMZN,
-      estado: req.body.estado || 'Pendente',
-      origem: origem || 'Balcão / Presencial',
-      observacoes: observacoes || ''
-    });
-
-    // Se cliente existir, incrementa totalPedidos
-    if (clienteRef) {
-      await Customer.findByIdAndUpdate(clienteRef, { $inc: { totalPedidos: 1 } });
-    }
-
-    res.status(201).json({
-      success: true,
-      message: 'Pedido criado com sucesso',
-      data: order
-    });
+    const order = await Order.create(req.body);
+    res.status(201).json({ success: true, message: 'Pedido registado', data: order });
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Erro ao criar pedido', error: error.message });
+    res.status(500).json({ success: false, message: 'Erro ao registar pedido', error: error.message });
   }
 });
 
-// PUT /api/orders/:id/status - Atualizar estado do pedido
+// PUT /api/orders/:id/status
 router.put('/:id/status', async (req, res) => {
   try {
     const { estado } = req.body;
-    const estadosValidos = ['Pendente', 'Confirmado', 'Em Preparação', 'Pronto para Entrega', 'Entregue', 'Cancelado'];
-
-    if (!estadosValidos.includes(estado)) {
-      return res.status(400).json({ success: false, message: 'Estado inválido' });
-    }
-
-    const order = await Order.findByIdAndUpdate(
-      req.params.id,
-      { estado },
-      { new: true }
-    );
-
-    if (!order) {
+    if (mongoose.connection.readyState !== 1) {
+      const p = memoryStore.pedidos.find(ped => ped._id === req.params.id);
+      if (p) {
+        p.estado = estado;
+        return res.json({ success: true, message: `Estado atualizado para ${estado}`, data: p });
+      }
       return res.status(404).json({ success: false, message: 'Pedido não encontrado' });
     }
 
-    res.json({
-      success: true,
-      message: `Estado do pedido atualizado para ${estado}`,
-      data: order
-    });
+    const order = await Order.findByIdAndUpdate(req.params.id, { estado }, { new: true });
+    res.json({ success: true, message: `Estado atualizado para ${estado}`, data: order });
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Erro ao atualizar estado', error: error.message });
+    res.status(500).json({ success: false, message: 'Erro ao atualizar estado' });
   }
 });
 

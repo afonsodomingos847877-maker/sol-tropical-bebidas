@@ -3,16 +3,112 @@
  * Gestão de Pedidos, Stock, Vendas por Grosso, Produtos e Clientes
  */
 
-// Estado Global da Aplicação
+// Catálogo Padrão (Sorriso 9 sabores, First Cola e Água Serena)
+const defaultProducts = [
+  { _id: 'p1', codigo: 'SOR-TAM-350', nome: 'Refrigerante Sorriso Tamarindo', marca: 'Sorriso', sabor: 'Tamarindo', capacidade: '350ml', unidadesPorFardo: 24, precoFardoMZN: 540, precoUnitarioMZN: 25, stockFardos: 150, stockMinimoFardos: 30, ativo: true },
+  { _id: 'p2', codigo: 'SOR-MAC-350', nome: 'Refrigerante Sorriso Maçã Verde', marca: 'Sorriso', sabor: 'Maçã Verde', capacidade: '350ml', unidadesPorFardo: 24, precoFardoMZN: 540, precoUnitarioMZN: 25, stockFardos: 120, stockMinimoFardos: 30, ativo: true },
+  { _id: 'p3', codigo: 'SOR-ANA-350', nome: 'Refrigerante Sorriso Ananás', marca: 'Sorriso', sabor: 'Ananás', capacidade: '350ml', unidadesPorFardo: 24, precoFardoMZN: 540, precoUnitarioMZN: 25, stockFardos: 180, stockMinimoFardos: 30, ativo: true },
+  { _id: 'p4', codigo: 'SOR-LIM-350', nome: 'Refrigerante Sorriso Limão', marca: 'Sorriso', sabor: 'Limão', capacidade: '350ml', unidadesPorFardo: 24, precoFardoMZN: 540, precoUnitarioMZN: 25, stockFardos: 95, stockMinimoFardos: 25, ativo: true },
+  { _id: 'p5', codigo: 'SOR-MAR-350', nome: 'Refrigerante Sorriso Maracujá', marca: 'Sorriso', sabor: 'Maracujá', capacidade: '350ml', unidadesPorFardo: 24, precoFardoMZN: 540, precoUnitarioMZN: 25, stockFardos: 140, stockMinimoFardos: 30, ativo: true },
+  { _id: 'p6', codigo: 'SOR-UVA-350', nome: 'Refrigerante Sorriso Uva', marca: 'Sorriso', sabor: 'Uva', capacidade: '350ml', unidadesPorFardo: 24, precoFardoMZN: 540, precoUnitarioMZN: 25, stockFardos: 110, stockMinimoFardos: 25, ativo: true },
+  { _id: 'p7', codigo: 'SOR-LAR-350', nome: 'Refrigerante Sorriso Laranja', marca: 'Sorriso', sabor: 'Laranja', capacidade: '350ml', unidadesPorFardo: 24, precoFardoMZN: 540, precoUnitarioMZN: 25, stockFardos: 210, stockMinimoFardos: 35, ativo: true },
+  { _id: 'p8', codigo: 'SOR-CAN-350', nome: 'Refrigerante Sorriso Maçã & Canela', marca: 'Sorriso', sabor: 'Maçã & Canela', capacidade: '350ml', unidadesPorFardo: 24, precoFardoMZN: 540, precoUnitarioMZN: 25, stockFardos: 60, stockMinimoFardos: 25, ativo: true },
+  { _id: 'p9', codigo: 'SOR-MOR-350', nome: 'Refrigerante Sorriso Morango', marca: 'Sorriso', sabor: 'Morango', capacidade: '350ml', unidadesPorFardo: 24, precoFardoMZN: 540, precoUnitarioMZN: 25, stockFardos: 165, stockMinimoFardos: 30, ativo: true },
+  { _id: 'p10', codigo: 'COLA-350', nome: 'Refrigerante First Cola', marca: 'First Cola', sabor: 'Cola Tradicional', capacidade: '350ml', unidadesPorFardo: 24, precoFardoMZN: 560, precoUnitarioMZN: 27, stockFardos: 250, stockMinimoFardos: 40, ativo: true },
+  { _id: 'p11', codigo: 'AGUA-500', nome: 'Água Mineral Serena', marca: 'Água Serena', sabor: 'Natural', capacidade: '500ml', unidadesPorFardo: 24, precoFardoMZN: 360, precoUnitarioMZN: 18, stockFardos: 320, stockMinimoFardos: 50, ativo: true }
+];
+
+const defaultCustomers = [
+  { _id: 'c1', nome: 'Supermercados VIP Maputo', tipo: 'Supermercado', telefone: '+258 84 123 4567', cidade: 'Maputo', totalComprasMZN: 54000, totalPedidos: 4 },
+  { _id: 'c2', nome: 'Distribuidora Matola Centro, Lda.', tipo: 'Grossista', telefone: '+258 86 987 6543', cidade: 'Matola', totalComprasMZN: 128500, totalPedidos: 8 },
+  { _id: 'c3', nome: 'Mercearia & Depósito Tropical', tipo: 'Retalhista', telefone: '+258 87 555 4321', cidade: 'Marracuene', totalComprasMZN: 28400, totalPedidos: 3 }
+];
+
+const defaultOrders = [
+  {
+    _id: 'ped_1',
+    numeroPedido: 'PED-202611-0001',
+    nomeCliente: 'Supermercados VIP Maputo',
+    telefoneCliente: '+258 84 123 4567',
+    cidade: 'Maputo',
+    itens: [
+      { produto: 'p1', nome: 'Refrigerante Sorriso Tamarindo', sabor: 'Tamarindo', quantidadeFardos: 20, precoFardoMZN: 540, subtotalMZN: 10800 },
+      { produto: 'p10', nome: 'Refrigerante First Cola', sabor: 'Cola', quantidadeFardos: 30, precoFardoMZN: 560, subtotalMZN: 16800 }
+    ],
+    totalFardos: 50,
+    valorTotalMZN: 27600,
+    estado: 'Pendente',
+    createdAt: new Date().toISOString()
+  }
+];
+
+const defaultSales = [
+  {
+    _id: 'ven_1',
+    numeroVenda: 'VEN-202611-0001',
+    nomeCliente: 'Distribuidora Matola Centro, Lda.',
+    telefoneCliente: '+258 86 987 6543',
+    itens: [
+      { produto: 'p7', nome: 'Refrigerante Sorriso Laranja', sabor: 'Laranja', quantidadeFardos: 40, precoFardoMZN: 540, subtotalMZN: 21600 },
+      { produto: 'p11', nome: 'Água Mineral Serena', sabor: 'Natural', quantidadeFardos: 50, precoFardoMZN: 360, subtotalMZN: 18000 }
+    ],
+    totalFardos: 90,
+    valorTotalMZN: 39600,
+    metodoPagamento: 'M-Pesa',
+    estadoPagamento: 'Pago',
+    createdAt: new Date().toISOString()
+  }
+];
+
+// Estado Global da Aplicação com valores padrão resilientes
+const savedLocalProducts = localStorage.getItem('stb_local_products');
+const initialProducts = savedLocalProducts ? JSON.parse(savedLocalProducts) : defaultProducts;
+
 const state = {
   currentView: 'overview',
   stats: null,
-  products: [],
-  orders: [],
-  sales: [],
+  products: initialProducts,
+  orders: defaultOrders,
+  sales: defaultSales,
   stock: null,
-  customers: []
+  customers: defaultCustomers
 };
+
+// Gerar estatísticas a partir do estado atual
+function recalculateLocalStats() {
+  const prods = state.products;
+  const vends = state.sales;
+  const peds = state.orders;
+
+  const totalFaturadoMZN = vends.reduce((a, b) => a + (b.valorTotalMZN || 0), 0);
+  const totalFardosVendidos = vends.reduce((a, b) => a + (b.totalFardos || 0), 0);
+  const stockTotalFardos = prods.reduce((a, b) => a + (b.stockFardos || 0), 0);
+  const criticos = prods.filter(p => p.stockFardos <= p.stockMinimoFardos);
+
+  state.stats = {
+    success: true,
+    kpis: {
+      totalFaturadoMZN,
+      faturadoHojeMZN: totalFaturadoMZN,
+      totalFardosVendidos,
+      pedidosPendentes: peds.filter(p => p.estado === 'Pendente').length,
+      totalPedidos: peds.length,
+      stockTotalFardos,
+      produtosCriticosCount: criticos.length,
+      totalClientes: state.customers.length
+    },
+    stockPorMarca: {
+      'Sorriso': prods.filter(p => p.marca === 'Sorriso').reduce((a, b) => a + b.stockFardos, 0),
+      'First Cola': prods.filter(p => p.marca === 'First Cola').reduce((a, b) => a + b.stockFardos, 0),
+      'Água Serena': prods.filter(p => p.marca === 'Água Serena').reduce((a, b) => a + b.stockFardos, 0)
+    },
+    produtosCriticos: criticos,
+    ultimasVendas: vends.slice(0, 5),
+    ultimosPedidos: peds.slice(0, 5)
+  };
+}
+
+recalculateLocalStats();
 
 // ==========================================================================
 // Autenticação & Controlo de Acesso
