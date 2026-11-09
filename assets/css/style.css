@@ -143,8 +143,18 @@ body {
 }
 
 .brand-icon {
-  font-size: 1.3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-orange);
   filter: drop-shadow(0 2px 4px rgba(247, 168, 27, 0.4));
+  line-height: 1;
+}
+
+.brand-icon svg {
+  width: 26px;
+  height: 26px;
+  display: block;
 }
 
 .brand-title {

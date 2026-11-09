@@ -9,7 +9,7 @@ async function testConnection() {
 
   try {
     const conn = await mongoose.connect(process.env.MONGODB_URI);
-    console.log('✅ Conexão bem-sucedida!');
+    console.log('[OK] Conexão bem-sucedida!');
     console.log('Host do Cluster:', conn.connection.host);
     console.log('Base de dados:', conn.connection.name);
     console.log('Estado:', conn.connection.readyState === 1 ? 'Conectado (1)' : conn.connection.readyState);
@@ -18,7 +18,7 @@ async function testConnection() {
     console.log('Conexão finalizada com sucesso.');
     process.exit(0);
   } catch (err) {
-    console.error('❌ Falha na conexão com o MongoDB:');
+    console.error('[ERRO] Falha na conexão com o MongoDB:');
     console.error(err.message);
     process.exit(1);
   }

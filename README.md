@@ -1,4 +1,4 @@
-# Sol Tropical Bebidas, Lda. ☀️
+# Sol Tropical Bebidas, Lda.
 
 Website oficial, catálogo institucional, API REST e **Painel Administrativo Comercial (Dashboard)** da **Sol Tropical Bebidas, Lda.** — Moçambique.
 
@@ -9,7 +9,7 @@ Produtores e distribuidores de bebidas refrescantes de alta qualidade:
 
 ---
 
-## 📊 Painel Comercial & Dashboard (`/admin`)
+## Painel Comercial & Dashboard (`/admin`)
 
 O painel administrativo centraliza a gestão comercial e operacional da empresa:
 - **Gestão de Pedidos:** Acompanhar pedidos dos clientes, atualizar estados (*Pendente*, *Confirmado*, *Em Preparação*, *Entregue*) e contactar clientes via WhatsApp.
@@ -20,7 +20,7 @@ O painel administrativo centraliza a gestão comercial e operacional da empresa:
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 ```text
 soltropicalbebidas/
@@ -60,7 +60,7 @@ soltropicalbebidas/
 
 ---
 
-## 🚀 Como Iniciar
+## Como Iniciar
 
 1. Instalar as dependências:
    ```bash

@@ -76,7 +76,17 @@ body {
 }
 
 .sidebar-logo {
-  font-size: 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-orange);
+  line-height: 1;
+}
+
+.sidebar-logo svg {
+  width: 28px;
+  height: 28px;
+  display: block;
 }
 
 .sidebar-title h1 {
@@ -177,7 +187,21 @@ body {
 }
 
 .user-avatar {
-  font-size: 1.2rem;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: rgba(242, 101, 34, 0.15);
+  color: var(--primary-orange);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.user-avatar svg {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 .user-info {
@@ -270,9 +294,19 @@ body {
   display: none;
   background: none;
   border: none;
-  font-size: 1.4rem;
   cursor: pointer;
   color: var(--text-primary);
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.mobile-menu-btn svg {
+  width: 22px;
+  height: 22px;
+  display: block;
 }
 
 .page-title {
@@ -448,19 +482,42 @@ body {
 }
 
 .kpi-icon {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: var(--radius-sm);
   display: flex;
   align-items: center;
   justify-content: center;
   background: #fff7ed;
   color: var(--primary-orange);
+  flex-shrink: 0;
 }
 
-.kpi-blue .kpi-icon { background: #f0f9ff; color: var(--brand-blue); }
-.kpi-green .kpi-icon { background: #ecfdf5; color: var(--success-green); }
-.kpi-red .kpi-icon { background: #fef2f2; color: var(--danger-red); }
+.kpi-icon svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+}
+
+.kpi-blue .kpi-icon {
+  background: #eff6ff;
+  color: var(--brand-blue);
+}
+
+.kpi-green .kpi-icon {
+  background: #ecfdf5;
+  color: var(--success-green);
+}
+
+.kpi-amber .kpi-icon {
+  background: #fffbeb;
+  color: var(--warning-amber);
+}
+
+.kpi-red .kpi-icon {
+  background: #fef2f2;
+  color: var(--danger-red);
+}
 
 .kpi-value {
   font-size: 1.65rem;
@@ -803,6 +860,16 @@ tr:hover td {
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.search-icon svg {
+  width: 16px;
+  height: 16px;
+  display: block;
 }
 
 /* Botão de Fechar Menu no Mobile (Padrão oculto no Desktop) */
@@ -881,13 +948,16 @@ tr:hover td {
   }
 
   .mobile-menu-btn {
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 38px;
     height: 38px;
     border-radius: var(--radius-sm);
     background: #f1f5f9;
+    color: var(--text-primary);
+    cursor: pointer;
+    border: none;
   }
 
   .topbar {
