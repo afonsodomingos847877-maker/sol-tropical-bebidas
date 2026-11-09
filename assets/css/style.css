@@ -17,7 +17,8 @@
   --radius-lg: 20px;
   --radius-md: 14px;
   --radius-sm: 8px;
-  --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-heading: 'Outfit', 'Plus Jakarta Sans', system-ui, sans-serif;
   --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
   --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.06);
   --shadow-hover: 0 14px 34px rgba(242, 101, 34, 0.12);
@@ -138,15 +139,22 @@ body {
 }
 
 .brand-title {
-  font-size: 1.12rem;
+  font-family: var(--font-heading);
+  font-size: 1.18rem;
   font-weight: 800;
   color: var(--text-primary);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: -0.01em;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .brand-title span {
-  color: var(--primary-orange);
+  background: linear-gradient(135deg, #f26522 0%, #ea580c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
 }
 
 .header-btn {
@@ -254,10 +262,35 @@ body {
 .dot-blue   { background: var(--brand-blue); box-shadow: 0 0 6px rgba(14, 65, 116, 0.4); }
 
 .compact-card h3 {
-  font-size: 1.12rem;
+  font-family: var(--font-heading);
+  font-size: 1.18rem;
   font-weight: 800;
-  color: var(--text-primary);
+  letter-spacing: -0.02em;
   margin: 0;
+  transition: transform 0.2s ease;
+}
+
+.compact-card:hover h3 {
+  transform: translateX(2px);
+}
+
+/* Estilos de escrita com identidade de cada marca */
+.title-sorriso {
+  background: linear-gradient(135deg, #ea580c 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.title-cola {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.title-serena {
+  background: linear-gradient(135deg, #0284c7 0%, #0e4174 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .compact-badge {
@@ -320,11 +353,30 @@ body {
   box-shadow: var(--shadow-sm);
 }
 
-.contact-card h2 {
-  font-size: 1.15rem;
+.title-section {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
   font-weight: 800;
+  letter-spacing: -0.02em;
   color: var(--text-primary);
   margin-bottom: 14px;
+  position: relative;
+  display: inline-block;
+}
+
+.title-section::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary-orange), var(--accent-gold));
+  border-radius: 3px;
+  margin: 6px auto 0;
+  transition: width 0.3s ease;
+}
+
+.contact-card:hover .title-section::after {
+  width: 52px;
 }
 
 .contact-btns {
