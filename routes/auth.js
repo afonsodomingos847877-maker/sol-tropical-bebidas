@@ -3,9 +3,17 @@ const router = express.Router();
 const crypto = require('crypto');
 
 // Credenciais padrão (configuráveis via variáveis de ambiente)
-const ADMIN_USER = process.env.ADMIN_USER || 'admin';
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+const ADMIN_USER = process.env.ADMIN_USER || 'admin@soltropicalbebidas.com';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || '@Admin123@';
 const AUTH_SECRET = process.env.AUTH_SECRET || 'soltropical-secret-token-key-2026';
+
+// Contas com acesso administrativo autorizado
+const CONTAS_ADMIN = [
+  { user: 'admin@soltropicalbebidas.com', pass: '@Admin123@', nome: 'Administrador Sol Tropical' },
+  { user: ADMIN_USER.toLowerCase(), pass: ADMIN_PASSWORD, nome: 'Administrador Sol Tropical' },
+  { user: 'admin', pass: '@Admin123@', nome: 'Administrador Sol Tropical' },
+  { user: 'admin', pass: 'admin123', nome: 'Administrador Sol Tropical' }
+];
 
 // Gerador de token simples e seguro
 const generateToken = (username) => {
@@ -44,15 +52,20 @@ router.post('/login', (req, res) => {
     const cleanUser = username.trim().toLowerCase();
     const cleanPass = password.trim();
 
-    // Verificação de credenciais
-    if (cleanUser === ADMIN_USER.toLowerCase() && cleanPass === ADMIN_PASSWORD) {
+    // Verificação de credenciais nas contas autorizadas
+    const contaEncontrada = CONTAS_ADMIN.find(
+      (c) => c.user.toLowerCase() === cleanUser && c.pass === cleanPass
+    );
+
+    if (contaEncontrada) {
       const token = generateToken(cleanUser);
       return res.json({
         success: true,
         message: 'Autenticação bem-sucedida!',
         token,
         user: {
-          nome: 'Administrador Comercial',
+          nome: contaEncontrada.nome,
+          email: 'admin@soltropicalbebidas.com',
           utilizador: cleanUser,
           role: 'admin'
         }
