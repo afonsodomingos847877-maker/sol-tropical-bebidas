@@ -120,11 +120,27 @@ const autoSeedIfEmpty = async () => {
 const startServer = async () => {
   await connectDB();
   await autoSeedIfEmpty();
-  app.listen(PORT, () => {
-    console.log(`[Servidor] Sol Tropical Bebidas rodando na porta ${PORT}`);
-    console.log(`[Servidor] Website Público: http://localhost:${PORT}`);
-    console.log(`[Servidor] Painel Comercial (Dashboard): http://localhost:${PORT}/admin`);
-  });
+
+  const listenOnPort = (portToTry) => {
+    const server = app.listen(portToTry, () => {
+      console.log(`[Servidor] Sol Tropical Bebidas rodando na porta ${portToTry}`);
+      console.log(`[Servidor] Website Público: http://localhost:${portToTry}`);
+      console.log(`[Servidor] Painel Comercial (Dashboard): http://localhost:${portToTry}/admin`);
+    });
+
+    server.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        const nextPort = Number(portToTry) === 3000 ? 5000 : Number(portToTry) + 1;
+        console.warn(`[Servidor] A porta ${portToTry} já está em uso por outra aplicação.`);
+        console.log(`[Servidor] A tentar iniciar na porta alternativa ${nextPort}...`);
+        listenOnPort(nextPort);
+      } else {
+        console.error('[Servidor] Erro ao iniciar:', err);
+      }
+    });
+  };
+
+  listenOnPort(PORT);
 };
 
 startServer();
