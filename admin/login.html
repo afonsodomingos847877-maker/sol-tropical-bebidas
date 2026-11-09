@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acesso ao Painel Comercial | Sol Tropical Bebidas</title>
+  
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23f26522'/%3E%3Cpath d='M16 6a10 10 0 1 0 10 10A10 10 0 0 0 16 6zm0 3a7 7 0 1 1-7 7 7 7 0 0 1 7-7z' fill='%23f7a81b'/%3E%3Cpath d='M8 20c3-3 8-1 10-2s4-3 6-2-2 5-6 6-7 0-10-2z' fill='%230e4174'/%3E%3C/svg%3E">
+
+  <style>
+    :root {
+      --primary-orange: #f26522;
+      --primary-hover: #d95314;
+      --brand-blue: #0e4174;
+      --brand-blue-hover: #092c4f;
+      --bg-body: #f8fafc;
+      --bg-card: #ffffff;
+      --border-light: #e2e8f0;
+      --border-focus: #f26522;
+      --text-primary: #0f172a;
+      --text-muted: #64748b;
+      --danger: #ef4444;
+      --success: #10b981;
+      --radius-lg: 20px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-lg: 0 16px 40px rgba(15, 23, 42, 0.08);
+      --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-family);
+      background-color: var(--bg-body);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(242, 101, 34, 0.08), transparent 35%),
+        radial-gradient(circle at 85% 25%, rgba(247, 168, 27, 0.07), transparent 30%),
+        radial-gradient(circle at 50% 85%, rgba(14, 65, 116, 0.06), transparent 40%),
+        linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      background-attachment: fixed;
+      color: var(--text-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Bolhas Sutis */
+    .bubbles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -30px;
+      left: var(--left, 50%);
+      width: var(--size, 16px);
+      height: var(--size, 16px);
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(247, 168, 27, 0.25) 60%, rgba(242, 101, 34, 0.1));
+      box-shadow: 0 0 8px rgba(247, 168, 27, 0.2);
+      border: 1px solid rgba(247, 168, 27, 0.25);
+      animation: floatBubble var(--duration, 10s) linear infinite;
+      animation-delay: var(--delay, 0s);
+      opacity: 0.45;
+    }
+
+    @keyframes floatBubble {
+      0% { transform: translateY(0) scale(0.8); opacity: 0; }
+      20% { opacity: 0.55; }
+      80% { opacity: 0.45; }
+      100% { transform: translateY(-105vh) scale(1.15); opacity: 0; }
+    }
+
+    /* Container do Login */
+    .login-container {
+      width: 100%;
+      max-width: 440px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .login-card {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .login-header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-icon {
+      font-size: 2.2rem;
+      filter: drop-shadow(0 3px 6px rgba(247, 168, 27, 0.4));
+      line-height: 1;
+      margin-bottom: 2px;
+    }
+
+    .brand-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-title span {
+      color: var(--primary-orange);
+    }
+
+    .login-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      background: #eff6ff;
+      border: 1px solid #dbeafe;
+      color: var(--brand-blue);
+      font-size: 0.74rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .login-form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    .input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      width: 18px;
+      height: 18px;
+      color: var(--text-muted);
+      pointer-events: none;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 14px 12px 42px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      font-size: 0.92rem;
+      color: var(--text-primary);
+      background: #ffffff;
+      transition: all 0.2s ease;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(242, 101, 34, 0.15);
+    }
+
+    .toggle-pass-btn {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .toggle-pass-btn:hover {
+      color: var(--text-primary);
+    }
+
+    .toggle-pass-btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    .form-options {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
+    }
+
+    .remember-label {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      cursor: pointer;
+      color: var(--text-muted);
+      user-select: none;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 13px 20px;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(135deg, #f26522 0%, #d95314 100%);
+      color: #ffffff;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(242, 101, 34, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-submit:hover {
+      background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(242, 101, 34, 0.4);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+
+    .btn-submit:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Mensagem de Feedback */
+    .alert-msg {
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      display: none;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .alert-danger {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
+    }
+
+    .alert-success {
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #15803d;
+    }
+
+    /* Caixa com Dica de Acesso Padrão */
+    .login-hint {
+      background: #fffbeb;
+      border: 1px solid #fef3c7;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 0.78rem;
+      color: #92400e;
+      line-height: 1.45;
+    }
+
+    .login-hint strong {
+      color: #78350f;
+    }
+
+    .login-footer-links {
+      text-align: center;
+      font-size: 0.84rem;
+    }
+
+    .login-footer-links a {
+      color: var(--brand-blue);
+      text-decoration: none;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s ease;
+    }
+
+    .login-footer-links a:hover {
+      color: var(--primary-orange);
+      text-decoration: underline;
+    }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+      border-top-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: none;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Bolhas de Fundo -->
+  <div class="bubbles" aria-hidden="true">
+    <span class="bubble" style="--left: 12%; --size: 16px; --duration: 11s; --delay: 0s;"></span>
+    <span class="bubble" style="--left: 30%; --size: 22px; --duration: 15s; --delay: 2s;"></span>
+    <span class="bubble" style="--left: 55%; --size: 14px; --duration: 10s; --delay: 4s;"></span>
+    <span class="bubble" style="--left: 78%; --size: 18px; --duration: 13s; --delay: 1s;"></span>
+    <span class="bubble" style="--left: 90%; --size: 24px; --duration: 14s; --delay: 3s;"></span>
+  </div>
+
+  <div class="login-container">
+    <div class="login-card">
+      <div class="login-header">
+        <span class="brand-icon">☀️</span>
+        <h1 class="brand-title">Sol Tropical <span>Bebidas</span></h1>
+        <div class="login-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C9.243 2 7 4.243 7 7v3H6a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8a2 2 0 0 0-2-2h-1V7c0-2.757-2.243-5-5-5zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7z"/></svg>
+          <span>Painel Comercial & Dashboard</span>
+        </div>
+      </div>
+
+      <!-- Alertas -->
+      <div id="alertBox" class="alert-msg alert-danger">
+        <span id="alertText">Credenciais inválidas.</span>
+      </div>
+
+      <form id="loginForm" class="login-form">
+        <div class="form-group">
+          <label for="usernameInput">Utilizador / Email Comercial</label>
+          <div class="input-wrapper">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+            <input type="text" id="usernameInput" class="form-control" placeholder="ex: admin" required autocomplete="username" value="admin">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="passwordInput">Palavra-passe</label>
+          <div class="input-wrapper">
+            <svg class="input-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+            <input type="password" id="passwordInput" class="form-control" placeholder="Digite a palavra-passe" required autocomplete="current-password" value="admin123">
+            <button type="button" id="togglePasswordBtn" class="toggle-pass-btn" aria-label="Mostrar ou ocultar senha">
+              <svg id="eyeIcon" viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-options">
+          <label class="remember-label">
+            <input type="checkbox" id="rememberMe" checked>
+            <span>Manter sessão iniciada</span>
+          </label>
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn-submit">
+          <span class="spinner" id="btnSpinner"></span>
+          <span id="btnText">Entrar no Dashboard &rarr;</span>
+        </button>
+      </form>
+
+      <!-- Dica de Acesso Padrão para a equipa -->
+      <div class="login-hint">
+        <strong>Acesso de Demonstração / Operacional:</strong><br>
+        Utilizador: <strong>admin</strong> &bull; Senha: <strong>admin123</strong>
+      </div>
+
+      <div class="login-footer-links">
+        <a href="/">
+          <span>&larr;</span> Voltar ao Website Público
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Alternar visibilidade da senha
+    const passInput = document.getElementById('passwordInput');
+    const toggleBtn = document.getElementById('togglePasswordBtn');
+    toggleBtn.addEventListener('click', () => {
+      if (passInput.type === 'password') {
+        passInput.type = 'text';
+      } else {
+        passInput.type = 'password';
+      }
+    });
+
+    // Se já estiver logado, redirecionar de imediato para /admin
+    const existingToken = localStorage.getItem('stb_auth_token') || sessionStorage.getItem('stb_auth_token');
+    if (existingToken) {
+      window.location.href = '/admin';
+    }
+
+    // Submissão do Formulário
+    const form = document.getElementById('loginForm');
+    const alertBox = document.getElementById('alertBox');
+    const alertText = document.getElementById('alertText');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnSpinner = document.getElementById('btnSpinner');
+    const btnText = document.getElementById('btnText');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      alertBox.style.display = 'none';
+
+      const username = document.getElementById('usernameInput').value.trim();
+      const password = document.getElementById('passwordInput').value.trim();
+      const remember = document.getElementById('rememberMe').checked;
+
+      // Estado de Carregamento
+      submitBtn.disabled = true;
+      btnSpinner.style.display = 'inline-block';
+      btnText.textContent = 'A autenticar...';
+
+      try {
+        const response = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+
+        const data = await response.json();
+
+        if (data.success && data.token) {
+          // Guardar token
+          if (remember) {
+            localStorage.setItem('stb_auth_token', data.token);
+            localStorage.setItem('stb_auth_user', JSON.stringify(data.user));
+          } else {
+            sessionStorage.setItem('stb_auth_token', data.token);
+            sessionStorage.setItem('stb_auth_user', JSON.stringify(data.user));
+          }
+
+          alertBox.className = 'alert-msg alert-success';
+          alertText.textContent = 'Sucesso! A redirecionar para o painel...';
+          alertBox.style.display = 'flex';
+
+          setTimeout(() => {
+            window.location.href = '/admin';
+          }, 400);
+        } else {
+          alertBox.className = 'alert-msg alert-danger';
+          alertText.textContent = data.message || 'Credenciais inválidas.';
+          alertBox.style.display = 'flex';
+          submitBtn.disabled = false;
+          btnSpinner.style.display = 'none';
+          btnText.textContent = 'Entrar no Dashboard \u2192';
+        }
+      } catch (err) {
+        alertBox.className = 'alert-msg alert-danger';
+        alertText.textContent = 'Erro de ligação ao servidor. Tente novamente.';
+        alertBox.style.display = 'flex';
+        submitBtn.disabled = false;
+        btnSpinner.style.display = 'none';
+        btnText.textContent = 'Entrar no Dashboard \u2192';
+      }
+    });
+  </script>
+</body>
+</html>

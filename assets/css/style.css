@@ -157,6 +157,41 @@ body {
   font-weight: 900;
 }
 
+.header-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.header-login-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #f0f9ff;
+  border: 1px solid #bae6fd;
+  color: #0369a1;
+  text-decoration: none;
+  font-size: 0.86rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.header-login-btn:hover {
+  background: #e0f2fe;
+  border-color: #7dd3fc;
+  color: #0284c7;
+  transform: translateY(-1px);
+}
+
+.header-login-btn svg {
+  width: 15px;
+  height: 15px;
+  fill: currentColor;
+}
+
 .header-btn {
   display: inline-flex;
   align-items: center;

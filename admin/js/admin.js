@@ -15,9 +15,44 @@ const state = {
 };
 
 // ==========================================================================
+// Autenticação & Controlo de Acesso
+// ==========================================================================
+function checkAuth() {
+  const token = localStorage.getItem('stb_auth_token') || sessionStorage.getItem('stb_auth_token');
+  if (!token) {
+    window.location.href = '/admin/login.html';
+    return false;
+  }
+  return true;
+}
+
+function handleLogout() {
+  if (confirm('Tem a certeza que deseja terminar a sessão?')) {
+    localStorage.removeItem('stb_auth_token');
+    localStorage.removeItem('stb_auth_user');
+    sessionStorage.removeItem('stb_auth_token');
+    sessionStorage.removeItem('stb_auth_user');
+    window.location.href = '/admin/login.html';
+  }
+}
+
+function initUserProfile() {
+  const userJson = localStorage.getItem('stb_auth_user') || sessionStorage.getItem('stb_auth_user');
+  if (userJson) {
+    try {
+      const user = JSON.parse(userJson);
+      const nameEl = document.getElementById('adminUserName');
+      if (nameEl) nameEl.textContent = user.nome || 'Administrador';
+    } catch (e) {}
+  }
+}
+
+// ==========================================================================
 // Inicialização
 // ==========================================================================
 document.addEventListener('DOMContentLoaded', () => {
+  if (!checkAuth()) return;
+  initUserProfile();
   initClock();
   initNavigation();
   initModals();

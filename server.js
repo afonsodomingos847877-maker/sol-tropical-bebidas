@@ -29,9 +29,17 @@ app.use('/admin', express.static(path.join(__dirname, 'admin')));
 app.use('/css', express.static(path.join(__dirname, 'admin', 'css')));
 app.use('/js', express.static(path.join(__dirname, 'admin', 'js')));
 
+// Rota para Tela de Login do Dashboard
+app.get(['/admin/login', '/login'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'admin', 'login.html'));
+});
+
 app.get(['/admin', '/admin/*'], (req, res) => {
   res.sendFile(path.join(__dirname, 'admin', 'index.html'));
 });
+
+// Rotas de Autenticação
+app.use('/api/auth', require('./routes/auth'));
 
 // Rotas da API Comercial do Dashboard
 app.use('/api/products', require('./routes/products'));
