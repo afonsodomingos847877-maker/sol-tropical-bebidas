@@ -123,12 +123,12 @@ function checkAuth() {
 }
 
 function handleLogout() {
-  if (confirm('Tem a certeza que deseja terminar a sessão?')) {
+  if (confirm('Tem a certeza que deseja terminar a sessão e voltar à página inicial?')) {
     localStorage.removeItem('stb_auth_token');
     localStorage.removeItem('stb_auth_user');
     sessionStorage.removeItem('stb_auth_token');
     sessionStorage.removeItem('stb_auth_user');
-    window.location.href = '/admin/login.html';
+    window.location.href = '/';
   }
 }
 
