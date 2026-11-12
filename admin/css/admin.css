@@ -69,7 +69,7 @@ body {
 
 .sidebar-header {
   padding: 24px 20px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
   gap: 12px;
@@ -79,7 +79,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #000000;
+  color: #ffffff;
   line-height: 1;
 }
 
@@ -93,18 +93,18 @@ body {
   font-size: 1.05rem;
   font-weight: 800;
   letter-spacing: 0.03em;
-  color: #000000;
+  color: #ffffff;
   line-height: 1.2;
 }
 
 .sidebar-title h1 span {
-  color: #000000;
+  color: #ffffff;
 }
 
 .sidebar-title p {
   font-size: 0.72rem;
-  color: #1e293b;
-  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
@@ -123,7 +123,7 @@ body {
   gap: 12px;
   padding: 10px 14px;
   border-radius: var(--radius-sm);
-  color: #000000;
+  color: #ffffff;
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 600;
@@ -136,14 +136,14 @@ body {
 }
 
 .nav-item:hover {
-  background: rgba(0, 0, 0, 0.08);
-  color: #000000;
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
 }
 
 .nav-item.active {
-  background: #ffffff;
-  color: #000000;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: rgba(0, 0, 0, 0.18);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .nav-item svg {
@@ -159,12 +159,12 @@ body {
   padding: 2px 7px;
   border-radius: var(--radius-full);
   font-weight: 700;
-  background: rgba(0, 0, 0, 0.12);
-  color: #000000;
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
 }
 
 .nav-item.active .nav-badge {
-  background: #000000;
+  background: rgba(255, 255, 255, 0.35);
   color: #ffffff;
 }
 
@@ -175,9 +175,9 @@ body {
 
 .sidebar-footer {
   padding: 16px 20px;
-  border-top: 1px solid rgba(0, 0, 0, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
   font-size: 0.78rem;
-  color: #000000;
+  color: #ffffff;
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -189,15 +189,15 @@ body {
   gap: 10px;
   padding: 8px 10px;
   border-radius: var(--radius-sm);
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .user-avatar {
   width: 32px;
   height: 32px;
   border-radius: var(--radius-full);
-  background: rgba(0, 0, 0, 0.12);
-  color: #000000;
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -217,23 +217,23 @@ body {
 
 .user-name {
   font-weight: 700;
-  color: #000000;
+  color: #ffffff;
   font-size: 0.82rem;
 }
 
 .user-role {
   font-size: 0.7rem;
-  color: #14532d;
-  font-weight: 700;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
 }
 
 .btn-logout {
   display: flex;
   align-items: center;
   gap: 8px;
-  background: rgba(0, 0, 0, 0.08);
-  color: #000000;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: var(--radius-sm);
   padding: 7px 12px;
   font-size: 0.8rem;
@@ -883,7 +883,7 @@ tr:hover td {
   display: none;
   background: none;
   border: none;
-  color: #000000;
+  color: #ffffff;
   font-size: 1.6rem;
   cursor: pointer;
   padding: 4px 8px;
