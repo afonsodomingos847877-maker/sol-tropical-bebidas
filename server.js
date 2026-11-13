@@ -22,6 +22,19 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+// Rotas para as Páginas Públicas Dedicadas (com suporte a URLs amigáveis e .html)
+app.get(['/quem-somos', '/quem-somos.html'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'quem-somos.html'));
+});
+
+app.get(['/missao-valores', '/missao-valores.html'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'missao-valores.html'));
+});
+
+app.get(['/produtos', '/produtos.html'], (req, res) => {
+  res.sendFile(path.join(__dirname, 'produtos.html'));
+});
+
 // Servir Painel Administrativo / Dashboard
 app.use('/admin', express.static(path.join(__dirname, 'admin')));
 

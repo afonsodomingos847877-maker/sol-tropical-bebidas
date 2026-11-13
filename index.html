@@ -38,13 +38,32 @@
         <span class="brand-title">Sol Tropical <span>Bebidas</span></span>
       </a>
 
-      <!-- Menu de Navegação Institucional -->
+      <!-- Menu de Navegação Institucional & Produtos -->
       <nav class="top-nav" id="topNav">
         <a href="#inicio" class="nav-link active">Início</a>
-        <a href="#sobre-nos" class="nav-link">Quem Somos</a>
-        <a href="#missao-valores" class="nav-link">Missão &amp; Valores</a>
+
+        <!-- Submenu Dropdown: Sobre Nós -->
+        <div class="nav-dropdown" id="dropdownSobre">
+          <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            <span>Sobre Nós</span>
+            <span class="dropdown-caret">
+              <svg viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+            </span>
+          </button>
+          <div class="dropdown-menu">
+            <a href="quem-somos.html" class="dropdown-item" id="linkQuemSomos">
+              <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+              <span>Quem Somos</span>
+            </a>
+            <a href="missao-valores.html" class="dropdown-item" id="linkMissao">
+              <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
+              <span>Missão &amp; Valores</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="produtos.html" class="nav-link" id="linkProdutos">Produtos</a>
         <a href="#refrescancia" class="nav-link">Refrescância</a>
-        <a href="#produtos" class="nav-link">Produtos</a>
         <a href="#contactos" class="nav-link">Contactos</a>
       </nav>
 
@@ -77,105 +96,7 @@
       >
     </section>
 
-    <!-- Secção: Quem Somos / Sobre Nós -->
-    <section class="about-card" id="sobre-nos">
-      <div class="section-tag">
-        <span class="tag-dot"></span>
-        <span>A Nossa História &bull; Moçambique</span>
-      </div>
-      <h2 class="title-section-large">Quem Somos Nós</h2>
-      <p class="about-lead">
-        A <strong>Sol Tropical Bebidas, Lda.</strong> é uma indústria moçambicana dedicada à produção, engarrafamento e distribuição de bebidas refrescantes de excelência. Combinamos tecnologia de ponta, matérias-primas rigorosamente selecionadas e a autêntica paixão moçambicana para levar frescura inigualável à mesa de milhares de famílias.
-      </p>
 
-      <div class="about-grid">
-        <div class="about-feature">
-          <div class="about-icon-box">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
-          </div>
-          <div>
-            <h4>100% Produção Local</h4>
-            <p>Compromisso com a indústria nacional moçambicana, gerando emprego e fomentando o desenvolvimento sustentável.</p>
-          </div>
-        </div>
-
-        <div class="about-feature">
-          <div class="about-icon-box">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 3L2 12h3v8h6v-6h2v6h6v-8h3L12 3zm5 15h-2v-6H9v6H7v-7.81l5-4.5 5 4.5V18z"/></svg>
-          </div>
-          <div>
-            <h4>Gama Completa &amp; Diversificada</h4>
-            <p>Desde a explosão dos 9 sabores icónicos de <em>Sorriso</em>, à energia de <em>First Cola</em> e à pureza hidratante de <em>Água Serena</em>.</p>
-          </div>
-        </div>
-
-        <div class="about-feature">
-          <div class="about-icon-box">
-            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/></svg>
-          </div>
-          <div>
-            <h4>Parceria com Grossistas e Retalhistas</h4>
-            <p>Rede logística ágil e estruturada para garantir stock pontual em supermercados, armazéns e lojas em todo o país.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Secção: Missão, Visão e Valores -->
-    <section class="pillars-card" id="missao-valores">
-      <div class="section-tag">
-        <span class="tag-dot"></span>
-        <span>Diretrizes Estratégicas</span>
-      </div>
-      <h2 class="title-section-large">Missão, Visão &amp; Valores</h2>
-      <p class="pillars-subtitle">
-        Os princípios fundamentais que guiam a nossa produção diária, o atendimento a clientes e o nosso compromisso comunitário.
-      </p>
-
-      <div class="pillars-grid">
-        <!-- Missão -->
-        <article class="pillar-box pillar-mission">
-          <div class="pillar-header">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-            </div>
-            <h3>A Nossa Missão</h3>
-          </div>
-          <p>
-            Produzir e disponibilizar bebidas refrescantes de elevada qualidade, sabor autêntico e preço acessível, promovendo momentos de celebração, vitalidade e alegria para todas as famílias e consumidores de Moçambique.
-          </p>
-        </article>
-
-        <!-- Visão -->
-        <article class="pillar-box pillar-vision">
-          <div class="pillar-header">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-            </div>
-            <h3>A Nossa Visão</h3>
-          </div>
-          <p>
-            Ser a indústria de bebidas de maior referência e carinho em Moçambique, reconhecida nacionalmente pela inovação em sabores tropicais, excelência nos processos e contributo ativo para a economia nacional.
-          </p>
-        </article>
-
-        <!-- Valores -->
-        <article class="pillar-box pillar-values">
-          <div class="pillar-header">
-            <div class="pillar-icon">
-              <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
-            </div>
-            <h3>Os Nossos Valores</h3>
-          </div>
-          <ul class="values-list">
-            <li><strong>Qualidade Inegociável:</strong> Rigor absoluto na seleção de insumos e no engarrafamento.</li>
-            <li><strong>Orgulho Moçambicano:</strong> Valorização da cultura, preferências e paladar local.</li>
-            <li><strong>Integridade &amp; Parceria:</strong> Respeito, transparência e confiança nas relações com distribuidores.</li>
-            <li><strong>Foco nas Pessoas:</strong> Satisfação constante de quem consome e partilha as nossas bebidas.</li>
-          </ul>
-        </article>
-      </div>
-    </section>
 
     <!-- Secção Experiência Gelada & Refrescância First Cola -->
     <section class="frost-experience-card" id="refrescancia">
@@ -252,103 +173,138 @@
       </div>
     </section>
 
-    <!-- Linha de Produtos (Compacta & Resumida) -->
-    <section class="products-compact" id="produtos">
-      <!-- Sorriso -->
-      <article class="compact-card">
+    <!-- Teasers Comerciais & Convite para Catálogo e Empresa -->
+    <section class="products-compact" id="destaques">
+      <!-- Card Teaser: Catálogo Completo -->
+      <article class="compact-card" style="padding: 22px 20px;">
         <div class="compact-top">
           <div class="compact-title-group">
             <span class="compact-dot dot-orange"></span>
-            <h3 class="title-sorriso">Sorriso</h3>
+            <h3 class="title-sorriso">Gama de Produtos Oficiais</h3>
           </div>
-          <span class="compact-badge badge-sorriso">9 Sabores</span>
+          <span class="compact-badge badge-sorriso">Catálogo 2026</span>
         </div>
-        <p class="compact-desc">
-          Tamarindo &bull; Maçã Verde &bull; Ananás &bull; Limão &bull; Maracujá &bull; Uva &bull; Laranja &bull; Canela &bull; Morango
+        <p class="compact-desc" style="font-size: 0.88rem; line-height: 1.55; margin: 8px 0 14px;">
+          Descubra os 9 sabores tropicais de <strong>Sorriso</strong>, a energia vibrante de <strong>First Cola</strong> e a hidratação pura de <strong>Água Serena</strong> em garrafas e fardos para revenda.
         </p>
-        <div class="compact-bottom">
-          <span class="compact-sub">Formato Garrafa 350ml</span>
-          <a href="https://wa.me/258865588888?text=Ol%C3%A1!%20Gostaria%20de%20encomendar%20fardos%20de%20Refrigerantes%20Sorriso." target="_blank" rel="noopener noreferrer" class="compact-action">
-            Pedir &rarr;
+        <div class="compact-bottom" style="margin-top: auto;">
+          <span class="compact-sub">Formatos 350ml e 500ml</span>
+          <a href="produtos.html" class="compact-action" style="font-weight: 700;">
+            Ver Todos os Produtos &rarr;
           </a>
         </div>
       </article>
 
-      <!-- First Cola -->
-      <article class="compact-card">
-        <div class="compact-top">
-          <div class="compact-title-group">
-            <span class="compact-dot dot-red"></span>
-            <h3 class="title-cola">First Cola</h3>
-          </div>
-          <div class="compact-badge-group">
-            <span class="compact-badge badge-cola">350ml</span>
-            <a href="#refrescancia" class="compact-badge badge-frost" title="Ver Taça &amp; Garrafa Gelada">
-              <svg viewBox="0 0 24 24" width="12" height="12" fill="currentColor"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14"/></svg>
-              Extra Gelada
-            </a>
-          </div>
-        </div>
-        <p class="compact-desc">
-          O sabor clássico e refrescante de cola que acompanha os melhores momentos. Sirva com muito gelo!
-        </p>
-        <div class="compact-bottom">
-          <span class="compact-sub">Suave &amp; Refrescante</span>
-          <a href="https://wa.me/258865588888?text=Ol%C3%A1!%20Gostaria%20de%20encomendar%20First%20Cola%20350ml%20bem%20gelada." target="_blank" rel="noopener noreferrer" class="compact-action">
-            Pedir &rarr;
-          </a>
-        </div>
-      </article>
-
-      <!-- Água Serena -->
-      <article class="compact-card">
+      <!-- Card Teaser: Institucional Sobre Nós -->
+      <article class="compact-card" style="padding: 22px 20px;">
         <div class="compact-top">
           <div class="compact-title-group">
             <span class="compact-dot dot-blue"></span>
-            <h3 class="title-serena">Água Serena</h3>
+            <h3 class="title-serena">Indústria Moçambicana</h3>
           </div>
-          <span class="compact-badge badge-serena">500ml</span>
+          <span class="compact-badge badge-serena">Sobre Nós</span>
         </div>
-        <p class="compact-desc">
-          Água mineral natural tratada com máxima pureza, equilíbrio e refrescância para a sua saúde diária.
+        <p class="compact-desc" style="font-size: 0.88rem; line-height: 1.55; margin: 8px 0 14px;">
+          Conheça a história da <strong>Sol Tropical Bebidas</strong>, o nosso parque industrial, o compromisso com o desenvolvimento nacional e as nossas diretrizes de Missão e Valores.
         </p>
-        <div class="compact-bottom">
-          <span class="compact-sub">Super Hidratante</span>
-          <a href="https://wa.me/258865588888?text=Ol%C3%A1!%20Gostaria%20de%20cota%C3%A7%C3%A3o%20para%20fardos%20de%20%C3%81gua%20Serena." target="_blank" rel="noopener noreferrer" class="compact-action">
-            Pedir &rarr;
+        <div class="compact-bottom" style="margin-top: auto;">
+          <span class="compact-sub">100% Produção Nacional</span>
+          <a href="quem-somos.html" class="compact-action" style="font-weight: 700;">
+            Conhecer a Empresa &rarr;
           </a>
         </div>
       </article>
     </section>
 
-    <!-- Contactos Rápidos -->
-    <section class="contact-card" id="contactos">
-      <h2 class="title-section">Contactos Oficiais</h2>
-      <div class="contact-btns">
-        <a href="https://wa.me/258865588888?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20as%20bebidas%20da%20Sol%20Tropical." target="_blank" rel="noopener noreferrer" class="btn-action btn-green">
-          <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zM12.05 20.2c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.267 8.267 0 01-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 012.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05s.88 2.38 1 2.54c.12.17 1.73 2.65 4.2 3.71.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.12-.23-.19-.48-.31z"/></svg>
-          WhatsApp (+258 865 588 888)
-        </a>
-        <a href="tel:+258865588888" class="btn-action btn-outline">
-          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-          +258 865 588 888
-        </a>
-        <a href="tel:+258856888889" class="btn-action btn-outline">
-          <svg viewBox="0 0 24 24"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-          +258 856 888 889
-        </a>
-      </div>
-    </section>
+    <!-- Mega Rodapé Corporativo Completo (Contactos, Localização, Redes Sociais) -->
+    <footer class="site-footer" id="contactos">
+      <div class="footer-grid">
+        <!-- Coluna 1: Sobre & Redes Sociais -->
+        <div class="footer-col">
+          <h4>Sol Tropical Bebidas</h4>
+          <p class="footer-brand-desc">
+            Indústria moçambicana dedicada à produção, engarrafamento e distribuição de bebidas refrescantes de excelência para todas as famílias e parceiros comerciais de Moçambique.
+          </p>
+          <div class="footer-social-links">
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-btn" title="Facebook Oficial" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+            </a>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-btn" title="Instagram Oficial" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-btn" title="LinkedIn Oficial" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="https://wa.me/258865588888" target="_blank" rel="noopener noreferrer" class="social-btn" title="Canal WhatsApp" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zM12.05 20.2c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.267 8.267 0 01-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 012.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05s.88 2.38 1 2.54c.12.17 1.73 2.65 4.2 3.71.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.12-.23-.19-.48-.31z"/></svg>
+            </a>
+          </div>
+        </div>
 
-    <!-- Rodapé Limpo com Powered by WeHostHere -->
-    <footer>
-      <div>&copy; <span id="year"></span> Sol Tropical Bebidas, Lda. &bull; Maputo, Moçambique &bull; <a href="/admin" style="color:inherit; text-decoration:none; opacity:0.8;">Painel Comercial</a></div>
-      <div class="footer-powered">
-        <span>Powered by</span>
-        <a href="https://wehosthere.com" target="_blank" rel="noopener noreferrer" class="wehosthere-badge">
-          <span>WeHostHere</span>
-          <img src="assets/images/wehosthere.png" alt="WeHostHere" class="wehosthere-logo" width="22" height="22">
-        </a>
+        <!-- Coluna 2: Navegação Rápida -->
+        <div class="footer-col">
+          <h4>Navegação</h4>
+          <ul class="footer-links-list">
+            <li><a href="index.html">Início</a></li>
+            <li><a href="quem-somos.html">Quem Somos</a></li>
+            <li><a href="missao-valores.html">Missão &amp; Valores</a></li>
+            <li><a href="produtos.html">Catálogo de Produtos</a></li>
+            <li><a href="#refrescancia">Refrescância First Cola</a></li>
+            <li><a href="/admin/login.html">Painel Comercial</a></li>
+          </ul>
+        </div>
+
+        <!-- Coluna 3: Localização & Atendimento -->
+        <div class="footer-col">
+          <h4>Localização &amp; Horário</h4>
+          <div class="footer-contact-item">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <div>
+              <strong>Fábrica &amp; Escritórios</strong><br>
+              Parque Industrial &bull; Maputo / Matola<br>
+              Moçambique
+            </div>
+          </div>
+          <div class="footer-contact-item" style="margin-top: 6px;">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+            <div>
+              <strong>Atendimento Comercial</strong><br>
+              Segunda a Sexta: 07:30 &ndash; 17:00<br>
+              Sábado: 08:00 &ndash; 13:00
+            </div>
+          </div>
+        </div>
+
+        <!-- Coluna 4: Contactos & Encomendas -->
+        <div class="footer-col">
+          <h4>Contactos Oficiais</h4>
+          <div class="footer-contact-item">
+            <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <div>
+              Linha Geral: <a href="tel:+258865588888">+258 865 588 888</a><br>
+              Linha de Apoio: <a href="tel:+258856888889">+258 856 888 889</a>
+            </div>
+          </div>
+
+          <a href="https://wa.me/258865588888?text=Ol%C3%A1!%20Gostaria%20de%20informa%C3%A7%C3%B5es%20e%20cota%C3%A7%C3%A3o%20da%20Sol%20Tropical%20Bebidas." target="_blank" rel="noopener noreferrer" class="footer-whatsapp-btn">
+            <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zM12.05 20.2c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.267 8.267 0 01-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 012.41 5.83c.02 4.54-3.68 8.23-8.22 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05s.88 2.38 1 2.54c.12.17 1.73 2.65 4.2 3.71.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.12-.23-.19-.48-.31z"/></svg>
+            <span>Falar no WhatsApp</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Barra Inferior de Direitos & Powered By -->
+      <div class="footer-bottom-bar">
+        <div>
+          &copy; <span id="year"></span> <strong>Sol Tropical Bebidas, Lda.</strong> &bull; Todos os direitos reservados.
+        </div>
+        <div class="footer-powered">
+          <span>Powered by</span>
+          <a href="https://wehosthere.com" target="_blank" rel="noopener noreferrer" class="wehosthere-badge">
+            <span>WeHostHere</span>
+            <img src="assets/images/wehosthere.png" alt="WeHostHere" class="wehosthere-logo" width="20" height="20">
+          </a>
+        </div>
       </div>
     </footer>
   </div>

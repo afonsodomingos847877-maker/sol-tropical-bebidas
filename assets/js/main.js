@@ -3,11 +3,12 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Atualizar ano no rodapé
-  const yearEl = document.getElementById('year');
-  if (yearEl) {
-    yearEl.textContent = new Date().getFullYear();
-  }
+  // 1. Atualizar ano em todos os rodapés
+  const yearEls = document.querySelectorAll('#year');
+  const currentYear = new Date().getFullYear();
+  yearEls.forEach(el => {
+    el.textContent = currentYear;
+  });
 
   // 2. Menu Responsivo Mobile Toggle
   const headerMenuToggle = document.getElementById('headerMenuToggle');
@@ -24,8 +25,8 @@ document.addEventListener('DOMContentLoaded', () => {
       headerMenuToggle.innerHTML = isOpen ? closeSvg : hamburgerSvg;
     });
 
-    // Fechar ao clicar em qualquer link do menu
-    topNav.querySelectorAll('.nav-link').forEach(link => {
+    // Fechar ao clicar em qualquer link simples ou dropdown item
+    topNav.querySelectorAll('.nav-link:not(.dropdown-toggle), .dropdown-item').forEach(link => {
       link.addEventListener('click', () => {
         if (topNav.classList.contains('open')) {
           topNav.classList.remove('open');
@@ -45,40 +46,82 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 3. ScrollSpy para destacar secção ativa no menu
-  const sections = document.querySelectorAll('section[id], header[id]');
-  const navLinks = document.querySelectorAll('.top-nav .nav-link');
-
-  if (sections.length && navLinks.length) {
-    const onScroll = () => {
-      const scrollPos = window.scrollY + 120;
-      let currentSectionId = '';
-
-      sections.forEach(section => {
-        const top = section.offsetTop;
-        const height = section.offsetHeight;
-        if (scrollPos >= top && scrollPos < top + height) {
-          currentSectionId = section.getAttribute('id');
+  // 3. Dropdown Menu Toggle (Especialmente no Mobile / Touch)
+  const navDropdowns = document.querySelectorAll('.nav-dropdown');
+  navDropdowns.forEach(dropdown => {
+    const toggleBtn = dropdown.querySelector('.dropdown-toggle');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', (e) => {
+        // No telemóvel, alternar o submenu ao tocar
+        if (window.innerWidth <= 900) {
+          e.preventDefault();
+          dropdown.classList.toggle('open');
         }
       });
+    }
+  });
 
-      if (!currentSectionId && window.scrollY < 200) {
-        currentSectionId = 'inicio';
+  // Fechar dropdown ao clicar fora no desktop
+  document.addEventListener('click', (e) => {
+    navDropdowns.forEach(dropdown => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('open');
       }
+    });
+  });
 
-      if (currentSectionId) {
-        navLinks.forEach(link => {
-          if (link.getAttribute('href') === `#${currentSectionId}`) {
-            link.classList.add('active');
-          } else {
-            link.classList.remove('active');
+  // 4. Detecção de Página Ativa para Links Internos
+  const currentPath = window.location.pathname;
+  if (currentPath.includes('quem-somos.html')) {
+    const sobreDropdown = document.getElementById('dropdownSobre');
+    if (sobreDropdown) sobreDropdown.classList.add('active');
+    const linkQuemSomos = document.getElementById('linkQuemSomos');
+    if (linkQuemSomos) linkQuemSomos.classList.add('active');
+  } else if (currentPath.includes('missao-valores.html')) {
+    const sobreDropdown = document.getElementById('dropdownSobre');
+    if (sobreDropdown) sobreDropdown.classList.add('active');
+    const linkMissao = document.getElementById('linkMissao');
+    if (linkMissao) linkMissao.classList.add('active');
+  } else if (currentPath.includes('produtos.html')) {
+    const linkProdutos = document.getElementById('linkProdutos');
+    if (linkProdutos) linkProdutos.classList.add('active');
+  } else {
+    // 5. ScrollSpy apenas na Página Inicial (index.html)
+    const sections = document.querySelectorAll('section[id], header[id]');
+    const navLinks = document.querySelectorAll('.top-nav .nav-link');
+
+    if (sections.length && navLinks.length) {
+      const onScroll = () => {
+        const scrollPos = window.scrollY + 120;
+        let currentSectionId = '';
+
+        sections.forEach(section => {
+          const top = section.offsetTop;
+          const height = section.offsetHeight;
+          if (scrollPos >= top && scrollPos < top + height) {
+            currentSectionId = section.getAttribute('id');
           }
         });
-      }
-    };
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
+        if (!currentSectionId && window.scrollY < 200) {
+          currentSectionId = 'inicio';
+        }
+
+        if (currentSectionId) {
+          navLinks.forEach(link => {
+            if (link.getAttribute('href') === `#${currentSectionId}` || link.getAttribute('href') === `index.html#${currentSectionId}`) {
+              link.classList.add('active');
+            } else if (!link.classList.contains('dropdown-toggle')) {
+              link.classList.remove('active');
+            }
+          });
+        }
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
   }
 });
+
 
