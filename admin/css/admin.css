@@ -33,6 +33,7 @@
   --radius-full: 9999px;
 
   --sidebar-width: 260px;
+  --sidebar-collapsed-width: 74px;
 }
 
 *, *::before, *::after {
@@ -65,14 +66,68 @@ body {
   height: 100vh;
   z-index: 100;
   overflow-y: auto;
+  overflow-x: hidden;
+  transition: width 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-sidebar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.admin-sidebar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-full);
 }
 
 .sidebar-header {
-  padding: 24px 20px;
+  padding: 20px 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 72px;
+  transition: padding 0.25s ease;
+}
+
+.sidebar-brand-wrapper {
+  display: flex;
+  align-items: center;
   gap: 12px;
+  min-width: 0;
+  overflow: hidden;
+  transition: opacity 0.2s ease;
+}
+
+.sidebar-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.sidebar-collapse-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: #ffffff;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease, transform 0.25s ease;
+}
+
+.sidebar-collapse-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.sidebar-collapse-btn svg {
+  display: block;
+  transition: transform 0.25s ease;
 }
 
 .sidebar-logo {
@@ -268,6 +323,80 @@ body {
 }
 
 /* ==========================================================================
+   Sidebar Recolhida / Colapsada (Modo Mini Menu)
+   ========================================================================== */
+.admin-sidebar.collapsed {
+  width: var(--sidebar-collapsed-width);
+}
+
+.admin-sidebar.collapsed .sidebar-header {
+  padding: 16px 8px;
+  justify-content: center;
+}
+
+.admin-sidebar.collapsed .sidebar-brand-wrapper {
+  display: none;
+}
+
+.admin-sidebar.collapsed .sidebar-header-actions {
+  justify-content: center;
+  width: 100%;
+}
+
+.admin-sidebar.collapsed .sidebar-collapse-btn svg {
+  transform: rotate(180deg);
+}
+
+.admin-sidebar.collapsed .sidebar-nav {
+  padding: 16px 8px;
+  gap: 8px;
+}
+
+.admin-sidebar.collapsed .nav-item {
+  padding: 12px 0;
+  justify-content: center;
+  position: relative;
+}
+
+.admin-sidebar.collapsed .nav-item span:not(.nav-badge) {
+  display: none;
+}
+
+.admin-sidebar.collapsed .nav-badge {
+  position: absolute;
+  top: 4px;
+  right: 6px;
+  padding: 2px 5px;
+  font-size: 0.62rem;
+  line-height: 1;
+  margin: 0;
+}
+
+.admin-sidebar.collapsed .sidebar-footer {
+  padding: 14px 8px;
+  gap: 8px;
+}
+
+.admin-sidebar.collapsed .user-profile-box {
+  padding: 6px 0;
+  justify-content: center;
+  background: transparent;
+}
+
+.admin-sidebar.collapsed .user-info {
+  display: none;
+}
+
+.admin-sidebar.collapsed .btn-logout {
+  padding: 10px 0;
+  justify-content: center;
+}
+
+.admin-sidebar.collapsed .btn-logout span {
+  display: none;
+}
+
+/* ==========================================================================
    Conteúdo Principal (Main Content)
    ========================================================================== */
 .admin-main {
@@ -297,21 +426,31 @@ body {
 }
 
 .mobile-menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: var(--text-primary);
-  padding: 6px;
-  border-radius: var(--radius-sm);
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-sm);
+  background: #f1f5f9;
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  color: var(--text-primary);
+  padding: 0;
   line-height: 1;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.mobile-menu-btn:hover {
+  background: #e2e8f0;
+  color: var(--primary-orange);
+  border-color: #cbd5e1;
 }
 
 .mobile-menu-btn svg {
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   display: block;
 }
 
@@ -936,6 +1075,7 @@ tr:hover td {
     top: 0;
     bottom: 0;
     height: 100vh;
+    width: 280px !important;
     z-index: 100;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
     transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -945,7 +1085,12 @@ tr:hover td {
     left: 0;
   }
 
+  .sidebar-collapse-btn {
+    display: none !important;
+  }
+
   .sidebar-header {
+    padding: 24px 20px;
     justify-content: space-between;
   }
 
@@ -953,17 +1098,59 @@ tr:hover td {
     display: block;
   }
 
-  .mobile-menu-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 38px;
-    height: 38px;
-    border-radius: var(--radius-sm);
-    background: #f1f5f9;
-    color: var(--text-primary);
-    cursor: pointer;
-    border: none;
+  /* Resetar overrides colapsados em mobile para drawer legível */
+  .admin-sidebar.collapsed {
+    width: 280px !important;
+  }
+
+  .admin-sidebar.collapsed .sidebar-header {
+    padding: 24px 20px !important;
+    justify-content: space-between !important;
+  }
+
+  .admin-sidebar.collapsed .sidebar-brand-wrapper {
+    display: flex !important;
+  }
+
+  .admin-sidebar.collapsed .sidebar-header-actions {
+    width: auto !important;
+  }
+
+  .admin-sidebar.collapsed .sidebar-nav {
+    padding: 20px 12px !important;
+    gap: 6px !important;
+  }
+
+  .admin-sidebar.collapsed .nav-item {
+    padding: 10px 14px !important;
+    justify-content: flex-start !important;
+  }
+
+  .admin-sidebar.collapsed .nav-item span {
+    display: inline !important;
+  }
+
+  .admin-sidebar.collapsed .sidebar-footer {
+    padding: 16px 20px !important;
+  }
+
+  .admin-sidebar.collapsed .user-profile-box {
+    padding: 8px 10px !important;
+    justify-content: flex-start !important;
+    background: rgba(255, 255, 255, 0.12) !important;
+  }
+
+  .admin-sidebar.collapsed .user-info {
+    display: flex !important;
+  }
+
+  .admin-sidebar.collapsed .btn-logout {
+    padding: 7px 12px !important;
+    justify-content: flex-start !important;
+  }
+
+  .admin-sidebar.collapsed .btn-logout span {
+    display: inline !important;
   }
 
   .topbar {

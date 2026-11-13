@@ -169,13 +169,21 @@ function initClock() {
   setInterval(update, 30000);
 }
 
-// Navegação entre Vistas (Tabs)
+// Navegação entre Vistas (Tabs) e Sidebar Colapsável
 function initNavigation() {
   const navButtons = document.querySelectorAll('.sidebar-nav .nav-item');
-  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const toggleBtn = document.getElementById('mobileMenuBtn');
+  const collapseBtn = document.getElementById('sidebarCollapseBtn');
   const sidebar = document.querySelector('.admin-sidebar');
   const backdrop = document.getElementById('sidebarBackdrop');
   const closeBtn = document.getElementById('sidebarCloseBtn');
+
+  // Restaurar preferência de menu colapsado no desktop
+  if (sidebar && window.innerWidth > 900) {
+    if (localStorage.getItem('stb_sidebar_collapsed') === 'true') {
+      sidebar.classList.add('collapsed');
+    }
+  }
 
   const closeSidebar = () => {
     if (sidebar) sidebar.classList.remove('open');
@@ -185,6 +193,21 @@ function initNavigation() {
   const openSidebar = () => {
     if (sidebar) sidebar.classList.add('open');
     if (backdrop) backdrop.classList.add('active');
+  };
+
+  const toggleSidebarCollapse = () => {
+    if (!sidebar) return;
+    if (window.innerWidth > 900) {
+      sidebar.classList.toggle('collapsed');
+      const isCollapsed = sidebar.classList.contains('collapsed');
+      localStorage.setItem('stb_sidebar_collapsed', isCollapsed ? 'true' : 'false');
+    } else {
+      if (sidebar.classList.contains('open')) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+    }
   };
 
   navButtons.forEach(btn => {
@@ -197,17 +220,20 @@ function initNavigation() {
       btn.classList.add('active');
 
       switchView(view);
-      closeSidebar();
+      if (window.innerWidth <= 900) {
+        closeSidebar();
+      }
     });
   });
 
-  if (mobileBtn) {
-    mobileBtn.addEventListener('click', () => {
-      if (sidebar && sidebar.classList.contains('open')) {
-        closeSidebar();
-      } else {
-        openSidebar();
-      }
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', toggleSidebarCollapse);
+  }
+
+  if (collapseBtn) {
+    collapseBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleSidebarCollapse();
     });
   }
 
