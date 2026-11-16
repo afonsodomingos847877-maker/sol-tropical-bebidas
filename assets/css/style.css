@@ -410,7 +410,7 @@ body {
    ========================================================================== */
 .banner-card {
   position: relative;
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   overflow: hidden;
   background: #ffffff;
   border: 1px solid var(--border-light);
@@ -693,43 +693,33 @@ body {
    Secção: Experiência Gelada & Refrescância First Cola
    ========================================================================== */
 .frost-experience-card {
-  background: linear-gradient(145deg, #ffffff 0%, #f0fdfa 40%, #eff6ff 100%);
-  border: 1px solid #bae6fd;
-  border-radius: var(--radius-lg);
-  padding: 32px 28px 36px;
-  box-shadow: 0 10px 30px rgba(2, 132, 199, 0.08), 0 2px 8px rgba(15, 23, 42, 0.04);
+  background: transparent;
+  border: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: 0;
+  margin-top: -16px;
+  box-shadow: var(--shadow-md);
   position: relative;
   overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.frost-experience-card:hover {
-  box-shadow: 0 16px 38px rgba(2, 132, 199, 0.14);
-}
-
-.frost-header-clean {
-  text-align: center;
-  margin-bottom: 22px;
-}
-
-.frost-title {
-  font-family: var(--font-heading);
-  font-size: 2rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  margin: 0;
 }
 
 .frost-image-wrapper {
   position: relative;
   width: 100%;
-  border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.14), 0 0 20px rgba(2, 132, 199, 0.1);
-  border: 2px solid rgba(255, 255, 255, 0.9);
   background: #0f172a;
+}
+
+.frost-image-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 38%;
+  background: linear-gradient(to bottom, rgba(254, 161, 45, 0.95) 0%, rgba(254, 161, 45, 0.55) 45%, rgba(254, 161, 45, 0) 100%);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .frost-hero-img {
@@ -738,11 +728,23 @@ body {
   display: block;
   object-fit: cover;
   aspect-ratio: 16 / 9;
-  transition: transform 0.5s ease;
 }
 
-.frost-image-wrapper:hover .frost-hero-img {
-  transform: scale(1.02);
+.frost-title {
+  position: absolute;
+  top: 7%;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+  letter-spacing: -0.02em;
+  margin: 0;
+  padding: 0 16px;
 }
 
 .frost-floating-pill {
@@ -1764,4 +1766,9 @@ body {
   .header-btn {
     width: 100%;
   }
+}
+
+@media (max-width: 900px) {
+  .frost-experience-card { margin-top: -14px; }
+  .frost-title { font-size: 1.3rem; top: 6%; }
 }
