@@ -2441,3 +2441,279 @@ body {
   .product-flavor-sub { font-size: 0.68rem; }
   .stage-nav-controls { padding-bottom: 16px; }
 }
+
+/* ==========================================================================
+   Vitrine Sequencial Solo: Garrafas em Grande Escala, Uma de Cada Vez
+   Fundo Suave (Champagne / Creme / Off-White Aconchegante)
+   ========================================================================== */
+.solo-showcase-card {
+  position: relative;
+  width: 100%;
+  min-height: 580px;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  margin-top: -17px;
+  overflow: hidden;
+  background: #f8f6f2;
+  border: 1px solid #e7e2d8;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+}
+
+.solo-stage-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.solo-slides-viewport {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.solo-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 48px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateX(40px) scale(0.96);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.55s ease;
+}
+
+.solo-slide.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(0) scale(1);
+}
+
+.solo-slide-content {
+  width: 100%;
+  max-width: 960px;
+  display: grid;
+  grid-template-columns: 1.1fr 1.3fr;
+  align-items: center;
+  gap: 48px;
+}
+
+.solo-bottle-zone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 440px;
+}
+
+.solo-bottle-ambient-glow {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  filter: blur(55px);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glow-morango { background: #f43f5e; }
+.glow-agua    { background: #38bdf8; }
+.glow-uva     { background: #a855f7; }
+.glow-limao   { background: #4ade80; }
+
+.solo-hero-bottle {
+  position: relative;
+  z-index: 2;
+  max-height: 420px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 20px 30px rgba(15, 23, 42, 0.22));
+  animation: gentleFloat 5s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes gentleFloat {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(-10px); }
+}
+
+.solo-floor-reflection {
+  position: relative;
+  width: 180px;
+  height: 22px;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at center, rgba(15, 23, 42, 0.28) 0%, rgba(15, 23, 42, 0.08) 50%, transparent 75%);
+  margin-top: -6px;
+  z-index: 1;
+}
+
+.solo-details-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.solo-tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 5px 14px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.tag-morango { background: #ffe4e6; color: #be123c; border: 1px solid #fecdd3; }
+.tag-agua    { background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
+.tag-uva     { background: #f3e8ff; color: #7e22ce; border: 1px solid #e9d5ff; }
+.tag-limao   { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+
+.solo-product-title {
+  font-family: var(--font-heading);
+  font-size: 2.35rem;
+  font-weight: 900;
+  color: #1e293b;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.solo-product-desc {
+  font-size: 1.02rem;
+  color: #475569;
+  line-height: 1.6;
+  margin: 0 0 6px 0;
+  max-width: 460px;
+}
+
+.solo-specs-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.solo-spec-chip {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #334155;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 5px 12px;
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.solo-nav-bar {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 16px 20px 24px;
+  background: linear-gradient(to top, rgba(248, 246, 242, 0.95) 0%, rgba(248, 246, 242, 0) 100%);
+}
+
+.solo-arrow-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.solo-arrow-btn:hover {
+  background: #f26522;
+  border-color: #f26522;
+  color: #ffffff;
+  transform: scale(1.08);
+  box-shadow: 0 6px 18px rgba(242, 101, 34, 0.35);
+}
+
+.solo-dots-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.solo-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #cbd5e1;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s ease;
+}
+
+.solo-dot:hover {
+  background: #94a3b8;
+  transform: scale(1.2);
+}
+
+.solo-dot.active {
+  width: 32px;
+  border-radius: 12px;
+  background: #f26522;
+  box-shadow: 0 2px 8px rgba(242, 101, 34, 0.4);
+}
+
+@media (max-width: 900px) {
+  .solo-showcase-card { min-height: 520px; }
+  .solo-slide { padding: 30px 24px; }
+  .solo-slide-content { gap: 28px; grid-template-columns: 1fr 1.2fr; }
+  .solo-hero-bottle { max-height: 350px; }
+  .solo-product-title { font-size: 1.85rem; }
+  .solo-product-desc { font-size: 0.92rem; }
+}
+
+@media (max-width: 640px) {
+  .solo-showcase-card { min-height: 560px; }
+  .solo-slide { padding: 24px 16px 20px; }
+  .solo-slide-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 16px;
+  }
+  .solo-bottle-zone { min-height: 270px; }
+  .solo-hero-bottle { max-height: 260px; }
+  .solo-details-panel { align-items: center; }
+  .solo-product-title { font-size: 1.5rem; }
+  .solo-product-desc { font-size: 0.86rem; max-width: 100%; }
+  .solo-specs-row { justify-content: center; }
+  .solo-arrow-btn { width: 38px; height: 38px; }
+}
