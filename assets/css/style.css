@@ -1994,3 +1994,78 @@ body {
   background: rgba(255, 255, 255, 0.3);
   border-color: rgba(255, 255, 255, 0.7);
 }
+
+/* ==========================================================================
+   Uniformidade: Menu, Banner, Imagem, Secções e Rodapé com a mesma largura
+   ========================================================================== */
+:root {
+  --page-max: 1120px;
+  --page-gutter: 14px;
+}
+
+body {
+  padding-left: var(--page-gutter) !important;
+  padding-right: var(--page-gutter) !important;
+}
+
+.container {
+  width: min(100%, var(--page-max));
+  max-width: var(--page-max);
+  box-sizing: border-box;
+}
+
+.top-header {
+  top: 10px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: min(calc(100% - (var(--page-gutter) * 2)), var(--page-max));
+  max-width: var(--page-max);
+  box-sizing: border-box;
+  border-radius: var(--radius-lg);
+  padding: 12px 20px;
+}
+
+.top-header-inner {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+.container > section,
+.container > footer,
+.container > article,
+.container > div {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.banner-card,
+.frost-experience-card,
+.site-footer,
+.page-hero-card,
+.about-card,
+.pillars-card {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.banner-card img,
+.frost-hero-img {
+  width: 100%;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .top-nav { left: 0; right: 0; }
+}
+
+@media (max-width: 600px) {
+  .top-header {
+    top: 8px;
+    border-radius: var(--radius-lg);
+    padding: 10px 14px;
+  }
+  .container { padding-top: 120px; }
+}
