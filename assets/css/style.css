@@ -894,22 +894,64 @@ body {
 }
 
 .compact-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
+  background: linear-gradient(145deg, #fae2cc 0%, #fdd5b1 100%);
+  border: 1.5px solid #edb36f;
   border-radius: var(--radius-md);
   padding: 12px 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 6px;
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  box-shadow: 0 4px 18px rgba(212, 126, 48, 0.12);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .compact-card:hover {
-  transform: translateY(-2px);
-  border-color: #cbd5e1;
-  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-color: #d47e30;
+  box-shadow: 0 12px 28px rgba(212, 126, 48, 0.2);
+}
+
+.card-gama-produtos {
+  background: linear-gradient(145deg, #fae2cc 0%, #fdd5b1 55%, #fed4ab 100%);
+  border-color: #edb36f;
+}
+
+.card-industria-mocambicana {
+  background: linear-gradient(145deg, #fae8d4 0%, #fdd5b1 50%, #fae0c8 100%);
+  border-color: #edb36f;
+}
+
+.compact-card .compact-desc {
+  color: #334155;
+}
+
+.compact-card .compact-sub {
+  color: #854d0e;
+  font-weight: 700;
+}
+
+.compact-card .compact-action {
+  color: #c2410c;
+  font-weight: 800;
+}
+
+.compact-card .compact-action:hover {
+  color: #7c2d12;
+}
+
+.compact-card .badge-sorriso {
+  background: #ffffff;
+  color: #c2410c;
+  border: 1px solid #fed7aa;
+  box-shadow: 0 2px 6px rgba(194, 65, 12, 0.1);
+}
+
+.compact-card .badge-serena {
+  background: #ffffff;
+  color: #0369a1;
+  border: 1px solid #bae6fd;
+  box-shadow: 0 2px 6px rgba(3, 105, 161, 0.1);
 }
 
 .compact-top {
@@ -2451,9 +2493,9 @@ body {
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
   margin-top: -17px;
   overflow: hidden;
-  background: linear-gradient(180deg, #fbf9f6 0%, #fff7ed 50%, #fef3e2 100%);
-  border: 1px solid #fed7aa;
-  box-shadow: 0 16px 36px rgba(242, 101, 34, 0.08);
+  background: linear-gradient(180deg, #fae0c8 0%, #fdd5b1 45%, #fed2a5 100%);
+  border: 1.5px solid #edb36f;
+  box-shadow: 0 16px 36px rgba(212, 126, 48, 0.14);
   padding: 34px 0 38px;
 }
 
@@ -2612,7 +2654,7 @@ body {
   font-family: var(--font-heading);
   font-size: clamp(2.6rem, 3.8vw, 3.6rem);
   font-weight: 900;
-  color: #c4c4c4;
+  color: rgba(205, 87, 0, 0.38);
   letter-spacing: 0.14em;
   line-height: 1;
   text-transform: uppercase;
@@ -2621,21 +2663,21 @@ body {
 
 .marquee-brand-text .flavor-sub {
   font-size: 0.86rem;
-  font-weight: 700;
-  color: #94a3b8;
+  font-weight: 800;
+  color: #a84b16;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   transition: color 0.3s ease;
 }
 
 .marquee-item:hover .marquee-brand-text .brand-name {
-  color: #1f2937;
+  color: #0f172a;
   letter-spacing: 0.16em;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  text-shadow: 0 2px 12px rgba(205, 87, 0, 0.22);
 }
 
 .marquee-item:hover .marquee-brand-text .flavor-sub {
-  color: var(--primary-orange);
+  color: #ea580c;
 }
 
 @media (max-width: 900px) {
