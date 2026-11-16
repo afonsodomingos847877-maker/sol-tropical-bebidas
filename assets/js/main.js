@@ -123,95 +123,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 6. Vitrine Sequencial Solo: Garrafas em Grande Escala, Uma de Cada Vez
-  (function initSoloShowcase() {
-    const showcase = document.getElementById('soloShowcase');
-    if (!showcase) return;
+  // 6. Carrossel Marquee Infinito Sorriso (Pause on hover nativo CSS + toque mobile)
+  (function initMarqueeTrack() {
+    const trackContainer = document.getElementById('marqueeTrackContainer');
+    if (!trackContainer) return;
 
-    const slides = Array.from(showcase.querySelectorAll('.solo-slide'));
-    const dots = Array.from(document.querySelectorAll('.solo-dot'));
-    const prevBtn = document.getElementById('soloPrevBtn');
-    const nextBtn = document.getElementById('soloNextBtn');
-
-    if (slides.length === 0) return;
-
-    let currentIndex = 0;
-    let autoInterval = null;
-    const intervalTime = 3800; // Rotação automática suave de cada garrafa a cada 3.8s
-
-    function goToSlide(index) {
-      slides[currentIndex].classList.remove('active');
-      dots[currentIndex].classList.remove('active');
-
-      currentIndex = (index + slides.length) % slides.length;
-
-      slides[currentIndex].classList.add('active');
-      dots[currentIndex].classList.add('active');
-    }
-
-    function startAutoCycle() {
-      stopAutoCycle();
-      autoInterval = setInterval(() => {
-        goToSlide(currentIndex + 1);
-      }, intervalTime);
-    }
-
-    function stopAutoCycle() {
-      if (autoInterval) {
-        clearInterval(autoInterval);
-        autoInterval = null;
-      }
-    }
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        goToSlide(currentIndex - 1);
-        startAutoCycle();
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        goToSlide(currentIndex + 1);
-        startAutoCycle();
-      });
-    }
-
-    dots.forEach((dot) => {
-      dot.addEventListener('click', (e) => {
-        e.preventDefault();
-        const slideIdx = parseInt(dot.getAttribute('data-slide'), 10);
-        goToSlide(slideIdx);
-        startAutoCycle();
-      });
-    });
-
-    // Pausar ao passar o rato por cima para inspecionar com detalhe
-    showcase.addEventListener('mouseenter', stopAutoCycle);
-    showcase.addEventListener('mouseleave', startAutoCycle);
-
-    // Suporte a toque / swipe em telemóvel
-    let touchStartX = 0;
-    let touchEndX = 0;
-    showcase.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-      stopAutoCycle();
+    // Suporte a pausa suave no toque em dispositivos móveis
+    trackContainer.addEventListener('touchstart', () => {
+      trackContainer.classList.add('is-touching');
     }, { passive: true });
 
-    showcase.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      if (touchStartX - touchEndX > 50) {
-        goToSlide(currentIndex + 1);
-      } else if (touchEndX - touchStartX > 50) {
-        goToSlide(currentIndex - 1);
-      }
-      startAutoCycle();
+    trackContainer.addEventListener('touchend', () => {
+      trackContainer.classList.remove('is-touching');
     }, { passive: true });
-
-    // Iniciar passagem automática suave
-    startAutoCycle();
   })();
 });
 
