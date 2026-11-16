@@ -122,6 +122,136 @@ document.addEventListener('DOMContentLoaded', () => {
       onScroll();
     }
   }
+
+  // 6. Palco 3D dos Produtos em Rotação Dinâmica (3 Sabores Mais Chamativos + Água Serena)
+  (function initDynamicProductOrbit() {
+    const stage = document.getElementById('orbitStage');
+    if (!stage) return;
+
+    const cards = Array.from(stage.querySelectorAll('.orbit-product-card'));
+    const dots = Array.from(document.querySelectorAll('.stage-dot'));
+    const prevBtn = document.getElementById('stagePrevBtn');
+    const nextBtn = document.getElementById('stageNextBtn');
+
+    if (cards.length === 0) return;
+
+    let currentAngle = 0;
+    let targetAngle = 0;
+    let isInteracting = false;
+    let autoTimer = null;
+    let lastTime = performance.now();
+    const rotationSpeed = 0.0005; // Rotação suave contínua em rad/ms
+
+    function updatePositions() {
+      const isMobile = window.innerWidth <= 600;
+      const isTablet = window.innerWidth <= 900;
+      const radiusX = isMobile ? 125 : (isTablet ? 210 : 310);
+      const radiusZ = isMobile ? 65 : (isTablet ? 110 : 155);
+
+      cards.forEach((card, i) => {
+        const baseAngle = (i * Math.PI) / 2; // 0, 90, 180, 270 graus em radianos
+        const theta = currentAngle + baseAngle;
+
+        const x = Math.sin(theta) * radiusX;
+        const z = Math.cos(theta) * radiusZ;
+
+        // Fator de profundidade: 0 (fundo) até 1 (frente)
+        const depthFactor = (z + radiusZ) / (2 * radiusZ);
+        const scale = isMobile 
+          ? (0.76 + depthFactor * 0.38) 
+          : (0.78 + depthFactor * 0.42);
+        const opacity = 0.45 + depthFactor * 0.55;
+        const zIndex = Math.round(depthFactor * 50) + 10;
+        const brightness = 75 + depthFactor * 30;
+
+        card.style.transform = `translate3d(calc(-50% + ${x.toFixed(1)}px), -50%, ${z.toFixed(1)}px) scale(${scale.toFixed(3)})`;
+        card.style.opacity = opacity.toFixed(2);
+        card.style.zIndex = zIndex;
+        card.style.filter = `brightness(${brightness.toFixed(0)}%)`;
+
+        if (depthFactor > 0.82) {
+          card.classList.add('is-focused');
+        } else {
+          card.classList.remove('is-focused');
+        }
+      });
+
+      // Calcular qual o item que está mais à frente para ativar o respetivo dot
+      const normalized = ((-currentAngle % (Math.PI * 2)) + (Math.PI * 2)) % (Math.PI * 2);
+      const activeIndex = Math.round(normalized / (Math.PI / 2)) % 4;
+      dots.forEach((dot, idx) => {
+        if (idx === activeIndex) dot.classList.add('active');
+        else dot.classList.remove('active');
+      });
+    }
+
+    function renderLoop(now) {
+      const delta = now - lastTime;
+      lastTime = now;
+
+      if (!isInteracting) {
+        currentAngle += rotationSpeed * delta;
+        targetAngle = currentAngle;
+      } else {
+        // Interpolação suave para a rotação de destino
+        currentAngle += (targetAngle - currentAngle) * 0.08;
+      }
+
+      updatePositions();
+      requestAnimationFrame(renderLoop);
+    }
+
+    requestAnimationFrame(renderLoop);
+
+    function pauseTemporarily() {
+      isInteracting = true;
+      clearTimeout(autoTimer);
+      autoTimer = setTimeout(() => {
+        isInteracting = false;
+        targetAngle = currentAngle;
+      }, 5000);
+    }
+
+    stage.addEventListener('mouseenter', () => { isInteracting = true; });
+    stage.addEventListener('mouseleave', () => { isInteracting = false; });
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        pauseTemporarily();
+        targetAngle -= Math.PI / 2;
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        pauseTemporarily();
+        targetAngle += Math.PI / 2;
+      });
+    }
+
+    dots.forEach((dot) => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        const idx = parseInt(dot.getAttribute('data-index'), 10);
+        pauseTemporarily();
+        // Alinhar para o índice clicado
+        const currentTurns = Math.floor(currentAngle / (Math.PI * 2));
+        targetAngle = (currentTurns * Math.PI * 2) - (idx * Math.PI) / 2;
+      });
+    });
+
+    cards.forEach((card, idx) => {
+      card.addEventListener('click', () => {
+        pauseTemporarily();
+        const currentTurns = Math.floor(currentAngle / (Math.PI * 2));
+        targetAngle = (currentTurns * Math.PI * 2) - (idx * Math.PI) / 2;
+      });
+    });
+
+    window.addEventListener('resize', updatePositions);
+  })();
 });
 
 

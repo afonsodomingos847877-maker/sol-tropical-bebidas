@@ -100,18 +100,98 @@
 
 
 
-    <!-- Banner Oficial -->
-
-
-
-    <section class="banner-card" id="banner">
+    <!-- Banner Oficial Dinâmico: 3 Refrigerantes com Cores Mais Chamativas + Água Serena em Rotação 3D -->
+    <section class="banner-card dynamic-stage-card" id="banner">
+      <!-- Imagem de Fundo com as Ondas Oficiais (Sem Logotipo e Sem Garrafas Estáticas) -->
       <img 
-        src="assets/images/sorriso-banner.png?v=2" 
-        alt="Sol Tropical Bebidas - Logótipo Oficial e Gama de Refrigerantes Sorriso, Água Serena e First Cola"
+        src="assets/images/sorriso-banner.png?v=3" 
+        alt="Gama Oficial Sol Tropical - Sorriso e Água Serena"
+        class="stage-bg-image"
         width="2000"
-        height="456"
+        height="700"
         loading="eager"
       >
+
+      <!-- Overlay com Iluminação e Efeitos Ambientais -->
+      <div class="stage-ambient-glow"></div>
+
+      <!-- Cabeçalho Informativo da Secção Dinâmica -->
+      <div class="stage-header-clean">
+        <span class="stage-badge">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Gama Oficial em Rotação Dinâmica
+        </span>
+        <h3 class="stage-title">Cores Vibrantes &amp; Pureza Cristalina</h3>
+        <p class="stage-desc">Gire e explore os grandes favoritos: Sorriso Morango, Água Serena, Sorriso Uva e Sorriso Limão.</p>
+      </div>
+
+      <!-- Palco 3D dos Produtos em Rotação Dinâmica -->
+      <div class="orbit-stage-viewport" id="orbitStage">
+        <!-- Pedestal Circular de Rotação -->
+        <div class="orbit-pedestal-disc"></div>
+
+        <!-- 1. Sorriso Morango (Vermelho Radiante) -->
+        <div class="orbit-product-card item-morango" data-index="0" title="Sorriso Morango 350ml">
+          <div class="bottle-glow-halo glow-red"></div>
+          <img src="assets/images/product_morango.png" alt="Sorriso Morango 350ml" class="orbit-bottle-img">
+          <div class="orbit-product-info info-red">
+            <strong class="product-flavor-name">Sorriso Morango</strong>
+            <span class="product-flavor-sub">350ml &bull; Vermelho Radiante</span>
+          </div>
+          <div class="bottle-contact-shadow"></div>
+        </div>
+
+        <!-- 2. Água Serena (Azul Mineral Puro) -->
+        <div class="orbit-product-card item-agua" data-index="1" title="Água Serena 500ml">
+          <div class="bottle-glow-halo glow-blue"></div>
+          <img src="assets/images/product_agua_serena.png" alt="Água Serena 500ml" class="orbit-bottle-img">
+          <div class="orbit-product-info info-blue">
+            <strong class="product-flavor-name">Água Serena</strong>
+            <span class="product-flavor-sub">500ml &bull; Equilíbrio Mineral</span>
+          </div>
+          <div class="bottle-contact-shadow"></div>
+        </div>
+
+        <!-- 3. Sorriso Uva (Roxo Intenso) -->
+        <div class="orbit-product-card item-uva" data-index="2" title="Sorriso Uva 350ml">
+          <div class="bottle-glow-halo glow-purple"></div>
+          <img src="assets/images/product_uva.png" alt="Sorriso Uva 350ml" class="orbit-bottle-img">
+          <div class="orbit-product-info info-purple">
+            <strong class="product-flavor-name">Sorriso Uva</strong>
+            <span class="product-flavor-sub">350ml &bull; Roxo Vibrante</span>
+          </div>
+          <div class="bottle-contact-shadow"></div>
+        </div>
+
+        <!-- 4. Sorriso Limão (Verde Tropical Elétrico) -->
+        <div class="orbit-product-card item-limao" data-index="3" title="Sorriso Limão 350ml">
+          <div class="bottle-glow-halo glow-green"></div>
+          <img src="assets/images/product_limao.png" alt="Sorriso Limão 350ml" class="orbit-bottle-img">
+          <div class="orbit-product-info info-green">
+            <strong class="product-flavor-name">Sorriso Limão</strong>
+            <span class="product-flavor-sub">350ml &bull; Frescura Cítrica</span>
+          </div>
+          <div class="bottle-contact-shadow"></div>
+        </div>
+      </div>
+
+      <!-- Controles de Navegação da Rotação -->
+      <div class="stage-nav-controls">
+        <button class="stage-arrow-btn prev-btn" id="stagePrevBtn" aria-label="Produto Anterior">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+
+        <div class="stage-indicator-dots" id="stageDots">
+          <button class="stage-dot active" data-index="0" aria-label="Ver Sorriso Morango"></button>
+          <button class="stage-dot" data-index="1" aria-label="Ver Água Serena"></button>
+          <button class="stage-dot" data-index="2" aria-label="Ver Sorriso Uva"></button>
+          <button class="stage-dot" data-index="3" aria-label="Ver Sorriso Limão"></button>
+        </div>
+
+        <button class="stage-arrow-btn next-btn" id="stageNextBtn" aria-label="Produto Seguinte">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+      </div>
     </section>
 
     <!-- Teasers Comerciais & Convite para Catálogo e Empresa -->
