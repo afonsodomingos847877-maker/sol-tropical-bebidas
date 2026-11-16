@@ -137,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let currentIndex = 0;
     let autoInterval = null;
-    const intervalTime = 4200; // 4.2 segundos por garrafa para visualização calma e nítida
+    const intervalTime = 3800; // Rotação automática suave de cada garrafa a cada 3.8s
 
     function goToSlide(index) {
       slides[currentIndex].classList.remove('active');
