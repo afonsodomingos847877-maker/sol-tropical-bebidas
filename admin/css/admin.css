@@ -1,5 +1,5 @@
-/* ==========================================================================
-   Sol Tropical Bebidas — Painel Comercial & Dashboard (Admin CSS)
+﻿/* ==========================================================================
+   Sol Tropical Bebidas â€” Painel Comercial & Dashboard (Admin CSS)
    ========================================================================== */
 
 :root {
@@ -311,7 +311,7 @@ body {
 }
 
 .sidebar-footer a {
-  color: #38bdf8;
+  color: #ffffff;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -397,7 +397,7 @@ body {
 }
 
 /* ==========================================================================
-   Conteúdo Principal (Main Content)
+   ConteÃºdo Principal (Main Content)
    ========================================================================== */
 .admin-main {
   flex: 1;
@@ -570,7 +570,7 @@ body {
 }
 
 /* ==========================================================================
-   Cartões de Métricas (KPI Cards)
+   CartÃµes de MÃ©tricas (KPI Cards)
    ========================================================================== */
 .kpi-grid {
   display: grid;
@@ -677,7 +677,7 @@ body {
 }
 
 /* ==========================================================================
-   Cartões de Seção (Dashboard Cards)
+   CartÃµes de SeÃ§Ã£o (Dashboard Cards)
    ========================================================================== */
 .card {
   background: var(--bg-card);
@@ -942,7 +942,7 @@ tr:hover td {
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
 }
 
-/* Formulários */
+/* FormulÃ¡rios */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -1017,7 +1017,7 @@ tr:hover td {
   display: block;
 }
 
-/* Botão de Fechar Menu no Mobile (Padrão oculto no Desktop) */
+/* BotÃ£o de Fechar Menu no Mobile (PadrÃ£o oculto no Desktop) */
 .sidebar-close-btn {
   display: none;
   background: none;
@@ -1033,7 +1033,7 @@ tr:hover td {
   color: #ffffff;
 }
 
-/* Backdrop Escuro para Gaveta Móvel */
+/* Backdrop Escuro para Gaveta MÃ³vel */
 .sidebar-backdrop {
   display: none;
   position: fixed;
@@ -1098,7 +1098,7 @@ tr:hover td {
     display: block;
   }
 
-  /* Resetar overrides colapsados em mobile para drawer legível */
+  /* Resetar overrides colapsados em mobile para drawer legÃ­vel */
   .admin-sidebar.collapsed {
     width: 280px !important;
   }
