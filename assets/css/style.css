@@ -2135,3 +2135,21 @@ body {
   .frost-logo-badge { padding: 5px 8px; border-radius: 10px; }
   .frost-logo-badge img { width: 74px; }
 }
+
+/* Logotipo com fundo transparente sobre a imagem */
+.frost-logo-badge {
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  border-radius: 0;
+}
+
+.frost-logo-badge img {
+  width: clamp(110px, 20vw, 240px);
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.35));
+}
+
+@media (max-width: 600px) {
+  .frost-logo-badge { padding: 0; border-radius: 0; }
+  .frost-logo-badge img { width: 100px; }
+}
