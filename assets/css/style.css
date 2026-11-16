@@ -1906,3 +1906,91 @@ body {
   .frost-title { font-size: 0.92rem; }
 }
 
+
+/* ==========================================================================
+   Rodapé Laranja com Escrita Branca
+   ========================================================================== */
+.site-footer {
+  background: linear-gradient(135deg, #f26522 0%, #ea580c 100%);
+  border: none;
+  box-shadow: 0 10px 28px rgba(234, 88, 12, 0.28);
+  color: #ffffff;
+}
+
+.site-footer,
+.site-footer p,
+.site-footer span,
+.site-footer strong,
+.site-footer li,
+.footer-col h4,
+.footer-brand-desc,
+.footer-links-list a,
+.footer-contact-item,
+.footer-contact-item a,
+.footer-contact-item strong,
+.footer-bottom-bar,
+.footer-bottom-bar strong {
+  color: #ffffff;
+}
+
+.footer-col h4::after {
+  background: #ffffff;
+}
+
+.footer-contact-icon {
+  color: #ffffff;
+}
+
+.social-btn {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  color: #ffffff;
+}
+
+.social-btn:hover {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #ea580c;
+  box-shadow: 0 4px 12px rgba(124, 45, 18, 0.3);
+}
+
+.footer-links-list a:hover,
+.footer-contact-item a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.footer-whatsapp-btn,
+.footer-whatsapp-btn span {
+  background: #16a34a;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
+.footer-whatsapp-btn span {
+  background: none;
+  box-shadow: none;
+}
+
+.footer-whatsapp-btn:hover {
+  background: #15803d;
+}
+
+.footer-bottom-bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.wehosthere-badge,
+.wehosthere-badge span {
+  color: #ffffff !important;
+}
+
+.wehosthere-badge {
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.45);
+}
+
+.wehosthere-badge:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.7);
+}
