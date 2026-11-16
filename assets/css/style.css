@@ -2243,17 +2243,39 @@ body {
    ========================================================================== */
 .frost-experience-card {
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border: 1.5px solid #edb36f;
+  border-bottom: none;
   margin-top: 0;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 4px 18px rgba(212, 126, 48, 0.08);
+  overflow: hidden;
+  position: relative;
 }
 
 .banner-card {
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  margin-top: -17px;
+  margin-top: -1px;
 }
 
 .frost-image-wrapper::before {
   display: none;
+}
+
+/* Degradê suave para camuflar perfeitamente a divisão com o carrossel */
+.frost-image-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: clamp(65px, 12vw, 115px);
+  background: linear-gradient(to bottom, 
+    rgba(250, 224, 200, 0) 0%, 
+    rgba(250, 224, 200, 0.25) 30%, 
+    rgba(250, 224, 200, 0.7) 65%, 
+    #fae0c8 100%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 .frost-logo-badge {
@@ -2277,10 +2299,9 @@ body {
   display: block;
 }
 
-.frost-title,
 .frost-title {
   top: auto;
-  bottom: 5%;
+  bottom: clamp(26px, 5.5vw, 44px);
   right: 3%;
   left: auto;
   max-width: 52%;
@@ -2289,13 +2310,14 @@ body {
   line-height: 1.2;
   padding: 0;
   color: #ffffff;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.55), 0 4px 18px rgba(0, 0, 0, 0.45);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.65), 0 4px 18px rgba(0, 0, 0, 0.55);
+  z-index: 2;
 }
 
 @media (max-width: 900px) {
   .frost-experience-card { margin-top: 0; }
-  .banner-card { margin-top: -15px; }
-  .frost-title { top: auto; bottom: 5%; font-size: clamp(0.95rem, 3.2vw, 1.4rem); }
+  .banner-card { margin-top: -1px; }
+  .frost-title { top: auto; bottom: clamp(20px, 4vw, 32px); font-size: clamp(0.95rem, 3.2vw, 1.4rem); }
 }
 
 @media (max-width: 600px) {
@@ -2617,10 +2639,11 @@ body {
   position: relative;
   width: 100%;
   border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-  margin-top: -17px;
+  margin-top: -1px;
   overflow: hidden;
   background: linear-gradient(180deg, #fae0c8 0%, #fdd5b1 45%, #fed2a5 100%);
   border: 1.5px solid #edb36f;
+  border-top: none;
   box-shadow: 0 16px 36px rgba(212, 126, 48, 0.14);
   padding: 34px 0 38px;
 }
