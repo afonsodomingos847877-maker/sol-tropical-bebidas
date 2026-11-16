@@ -696,7 +696,7 @@ body {
   background: linear-gradient(145deg, #ffffff 0%, #f0fdfa 40%, #eff6ff 100%);
   border: 1px solid #bae6fd;
   border-radius: var(--radius-lg);
-  padding: 30px 28px;
+  padding: 32px 28px 36px;
   box-shadow: 0 10px 30px rgba(2, 132, 199, 0.08), 0 2px 8px rgba(15, 23, 42, 0.04);
   position: relative;
   overflow: hidden;
@@ -707,57 +707,28 @@ body {
   box-shadow: 0 16px 38px rgba(2, 132, 199, 0.14);
 }
 
-.frost-badge-bar {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 8px;
+.frost-header-clean {
+  text-align: center;
+  margin-bottom: 22px;
 }
 
-.frost-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  background: linear-gradient(135deg, #0284c7 0%, #0e4174 100%);
-  color: #ffffff;
-  font-size: 0.78rem;
+.frost-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
   font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  padding: 5px 14px;
-  border-radius: 20px;
-  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.28);
-}
-
-.frost-badge svg {
-  display: block;
-}
-
-.frost-sub-tag {
-  font-size: 0.78rem;
-  font-weight: 700;
-  color: #0369a1;
-  background: #e0f2fe;
-  padding: 5px 12px;
-  border-radius: 20px;
-  border: 1px solid #bae6fd;
-}
-
-.frost-hero-banner {
-  display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 28px;
-  align-items: center;
-  margin-top: 14px;
+  color: var(--text-primary);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 0;
 }
 
 .frost-image-wrapper {
   position: relative;
+  width: 100%;
   border-radius: var(--radius-md);
   overflow: hidden;
-  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
-  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.14), 0 0 20px rgba(2, 132, 199, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.9);
   background: #0f172a;
 }
 
@@ -767,11 +738,11 @@ body {
   display: block;
   object-fit: cover;
   aspect-ratio: 16 / 9;
-  transition: transform 0.4s ease;
+  transition: transform 0.5s ease;
 }
 
 .frost-image-wrapper:hover .frost-hero-img {
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 .frost-floating-pill {
