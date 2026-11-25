@@ -142,10 +142,10 @@ button, input, select, textarea,
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 0; /* Controle intencional de espaçamento por secção para ritmo visual perfeito */
   position: relative;
   z-index: 1;
-  padding-top: 86px; /* Espaço exato para o cabeçalho 100% fixo */
+  padding-top: 104px; /* Alívio e respiro elegante abaixo do cabeçalho flutuante */
 }
 
 /* ==========================================================================
@@ -996,57 +996,107 @@ button, input, select, textarea,
 /* ==========================================================================
    Linha de Produtos (Compacta & Resumida para Poupar Espaço)
    ========================================================================== */
+/* Introdução de Destaques da Home (Alívio & Ritmo Visual) */
+.home-section-intro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 56px;
+  margin-bottom: 28px;
+  gap: 12px;
+}
+
+.home-section-intro .title-section-large {
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  color: #0f172a;
+  margin: 0;
+}
+
+.home-section-intro .about-lead {
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1.02rem;
+  line-height: 1.68;
+  color: #475569;
+}
+
 .products-compact {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .compact-card {
   background: #ffffff;
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-md);
-  padding: 12px 16px;
+  border-radius: var(--radius-lg);
+  padding: 36px 32px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 6px;
-  box-shadow: var(--shadow-sm);
+  gap: 16px;
+  min-height: 250px;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.05);
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 .compact-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   border-color: #fed7aa;
-  box-shadow: 0 12px 28px rgba(242, 101, 34, 0.12);
+  box-shadow: 0 16px 36px rgba(242, 101, 34, 0.12);
 }
 
 .card-gama-produtos {
   background: #ffffff;
-  border-top: 3.5px solid var(--primary-orange);
+  border-top: 4px solid var(--primary-orange);
 }
 
 .card-industria-mocambicana {
   background: #ffffff;
-  border-top: 3.5px solid var(--brand-blue);
+  border-top: 4px solid var(--brand-blue);
+}
+
+.compact-card h3 {
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
 }
 
 .compact-card .compact-desc {
-  color: var(--text-secondary);
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin: 4px 0 12px;
+}
+
+.compact-card .compact-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 18px;
+  border-top: 1px solid #f1f5f9;
+  margin-top: auto;
 }
 
 .compact-card .compact-sub {
-  color: var(--text-muted);
+  color: #64748b;
+  font-size: 0.86rem;
   font-weight: 600;
 }
 
 .compact-card .compact-action {
   color: var(--primary-orange);
   font-weight: 700;
+  font-size: 0.92rem;
+  transition: transform 0.2s ease, color 0.2s ease;
 }
 
 .compact-card .compact-action:hover {
   color: var(--primary-red);
+  transform: translateX(4px);
 }
 
 .compact-card .badge-sorriso {
@@ -1295,12 +1345,12 @@ button, input, select, textarea,
   background: linear-gradient(135deg, #ff7518 0%, #ea5e00 100%);
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: var(--radius-lg);
-  padding: 40px 32px 24px;
-  margin-top: 16px;
+  padding: 48px 36px 28px;
+  margin-top: 60px; /* Alívio generoso e respiração visual antes do rodapé */
   box-shadow: 0 14px 36px rgba(255, 117, 24, 0.32);
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 36px;
 }
 
 .footer-grid {
@@ -1903,11 +1953,17 @@ button, input, select, textarea,
 
   .products-compact {
     grid-template-columns: 1fr;
-    gap: 10px;
+    gap: 18px;
   }
 
   .compact-card {
-    padding: 12px 14px;
+    padding: 24px 20px;
+    min-height: auto;
+  }
+
+  .home-section-intro {
+    margin-top: 36px;
+    margin-bottom: 20px;
   }
 
   .site-footer {
@@ -2670,7 +2726,7 @@ body {
   border: 1px solid #fed7aa;
   border-top: none;
   box-shadow: 0 14px 34px rgba(242, 101, 34, 0.06);
-  padding: 34px 0 38px;
+  padding: 48px 0 54px;
 }
 
 .marquee-track-container {
